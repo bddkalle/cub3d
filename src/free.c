@@ -1,34 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 11:42:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 16:28:56 by fschnorr         ###   ########.fr       */
+/*   Created: 2025/10/30 13:36:20 by fschnorr          #+#    #+#             */
+/*   Updated: 2025/10/31 15:16:38 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	run_game(t_vars *vars)
+void	free_null(void **ptr)
 {
-	//mlx_key_hook(vars->win, key_press, vars);
-	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
-	mlx_hook(vars->win, 3, 1L << 1, key_release, vars);
-	//mlx_key_hook(vars->win, key_release, vars);
-	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);
-	mlx_loop_hook(vars->mlx, draw_img, vars);
-	mlx_loop(vars->mlx);
+	if (ptr && *ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }
 
-
-int	main(void)
+void	free_mlx(t_vars *vars)
 {
-	t_vars	vars;
+	if (vars->img)
+	{
+		mlx_destroy_image(vars->mlx, vars->img);
+		vars->img = NULL;
+	}
+	if (vars->win)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		vars->win = NULL;
+	}
+	if (vars->mlx)
+	{
+		mlx_destroy_display(vars->mlx);
+		free_null(&vars->mlx);
+	}
+}
 
-	init_game(&vars);
-	run_game(&vars);
-	return (0);
+void	free_all(t_vars *vars)
+{
+	free_mlx(vars);
 }

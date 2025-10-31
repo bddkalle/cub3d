@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 11:42:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 16:28:56 by fschnorr         ###   ########.fr       */
+/*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
+/*   Updated: 2025/10/31 16:32:26 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	run_game(t_vars *vars)
+void	init_player(t_player *player)
 {
-	//mlx_key_hook(vars->win, key_press, vars);
-	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
-	mlx_hook(vars->win, 3, 1L << 1, key_release, vars);
-	//mlx_key_hook(vars->win, key_release, vars);
-	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);
-	mlx_loop_hook(vars->mlx, draw_img, vars);
-	mlx_loop(vars->mlx);
+	*player = (t_player){};
+	player->x = WIDTH / 2;
+	player->y = HEIGHT / 2;
 }
 
-
-int	main(void)
+void	move_player(t_player *player)
 {
-	t_vars	vars;
+	int	speed;
 
-	init_game(&vars);
-	run_game(&vars);
-	return (0);
+	speed = 1;
+	if (player->key_up)
+		player->y -= speed;
+	if (player->key_down)
+		player->y += speed;
+	if (player->key_left)
+		player->x -= speed;
+	if (player->key_right)
+		player->x += speed;
 }

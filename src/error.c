@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 11:42:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 16:28:56 by fschnorr         ###   ########.fr       */
+/*   Created: 2025/10/30 13:14:40 by fschnorr          #+#    #+#             */
+/*   Updated: 2025/10/30 13:36:14 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	run_game(t_vars *vars)
+void	fatal_error(t_vars *vars, char *errmsg, char *fctname)
 {
-	//mlx_key_hook(vars->win, key_press, vars);
-	mlx_hook(vars->win, 2, 1L << 0, key_press, vars);
-	mlx_hook(vars->win, 3, 1L << 1, key_release, vars);
-	//mlx_key_hook(vars->win, key_release, vars);
-	mlx_hook(vars->win, 17, 1L << 0, close_win, vars);
-	mlx_loop_hook(vars->mlx, draw_img, vars);
-	mlx_loop(vars->mlx);
-}
-
-
-int	main(void)
-{
-	t_vars	vars;
-
-	init_game(&vars);
-	run_game(&vars);
-	return (0);
+	if (!errno)
+	{
+		write(STDERR_FILENO, "cub3D: ", 7);
+		write(STDERR_FILENO, errmsg, ft_strlen(errmsg));
+		write(STDERR_FILENO, "\n", 1);
+	}
+	else
+		perror(fctname);
+	free_all(vars);
+	exit(1);
 }
