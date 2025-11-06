@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:36:20 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 15:16:38 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/06 15:42:56 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	free_mlx(t_vars *vars)
 
 void	free_all(t_vars *vars)
 {
+	free_null((void **)&vars->map.grid);
 	free_mlx(vars);
 }

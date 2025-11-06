@@ -6,11 +6,19 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:14:40 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/30 13:36:14 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:17:49 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	input_error(char *errmsg)
+{
+	write(STDERR_FILENO, "cub3D: ", 7);
+	write(STDERR_FILENO, errmsg, ft_strlen(errmsg));
+	write(STDERR_FILENO, "\n", 1);
+	exit(1);
+}
 
 void	fatal_error(t_vars *vars, char *errmsg, char *fctname)
 {

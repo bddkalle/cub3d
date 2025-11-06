@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 16:19:13 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:27:42 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #  define WIDTH 1280
 #  define HEIGHT 720
+#  define BLOCK 64
 
 #  define W 119
 #  define A 97
 #  define S 115
 #  define D 100
+#  define LEFT 65361
+#  define RIGHT 65363
 
 #  define PI 3.14159265359
 
@@ -36,6 +39,7 @@
 void	init_game(t_vars *vars);
 
 //Error
+void	input_error(char *errmsg);
 void	fatal_error(t_vars *vars, char *errmsg, char *fctname);
 
 //Free
@@ -47,12 +51,20 @@ int		key_press(int keycode, t_vars *vars);
 int		key_release(int keycode, t_vars *vars);
 
 //Draw
+void	put_pixel(t_vars *vars, int x, int y, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
 
 //Player
 void	init_player(t_player *player);
-void	move_player(t_player *player);
+void	move_player(t_vars *vars);
+
+//Map
+void	parse_map(t_vars *vars);
+
+//Validate
+void	validate_fileformat(char *s);
+void	validate_input_file(char *s);
 
 
 #endif

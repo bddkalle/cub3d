@@ -6,7 +6,7 @@
 #    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2025/10/31 15:06:27 by fschnorr         ###   ########.fr        #
+#    Updated: 2025/11/06 16:23:11 by fschnorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,14 @@ SRC =	$(addsuffix .c,							\
 							init				\
 							main				\
 							player				\
+		))										\
+		$(addsuffix .c,							\
+		$(addprefix src/map/,					\
+							parse_map			\
+		))										\
+		$(addsuffix .c,							\
+		$(addprefix src/validate/,				\
+							validate			\
 		))
 OBJS := $(SRC:.c=.o)
 

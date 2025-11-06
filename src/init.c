@@ -6,11 +6,17 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/31 16:21:49 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:32:47 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	init_map(t_vars *vars)
+{
+	//get_map_size()
+	parse_map(vars);
+}
 
 void	init_vars(t_vars *vars)
 {
@@ -21,6 +27,8 @@ void	init_vars(t_vars *vars)
 void	init_game(t_vars *vars)
 {
 	init_vars(vars);
+	cub_interpreter(vars);
+	init_map(vars);
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 		fatal_error(vars, "Could not initiate mlx session", "mlx_init");
