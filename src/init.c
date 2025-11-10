@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/10 12:10:43 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:13:46 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ void	cub_interpreter(t_vars *vars, char *file)
 			printf("path: %s.\n", filename);
 /* 			vars->map.no.img = mlx_xpm_file_to_image(vars->mlx, filename, \
 			&vars->map.no.px_w, &vars->map.no.px_h);
- */			if (!vars->map.no.img)												//weiter: free_all img includen&testen
+ */			/*if (!vars->map.no.img)												//weiter: free_all img includen&testen
 			{
-				
+
 				close(fd);
 				free_null((void **)&line);
 				free_null((void **)&filename);
 				get_next_line(-1);
 				fatal_error(vars, "Could not create north texture", \
-			"mlx_xpm_file_to_image");			
-			}
+			"mlx_xpm_file_to_image");
+			}*/
 			free_null((void **)&filename);
 		}
 		free_null((void **)&line);
