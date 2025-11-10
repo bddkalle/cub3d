@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:16:23 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/01/20 14:10:35 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/07 13:57:24 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isspace(int c);
 t_size	ft_strlcat(char *dst, const char *src, t_size dstsize);
 t_size	ft_strlcpy(char *dst, const char *src, t_size dstsize);
 t_size	ft_strlen(const char *s);

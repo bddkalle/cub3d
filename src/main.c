@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:42:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/06 16:27:23 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/07 13:23:09 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void	run_game(t_vars *vars)
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	(void)argv;
 
 	if (argc == 2)
 	{
 		validate_fileformat(argv[1]);
-		init_game(&vars);
+		init_game(&vars, argv[1]);
 		run_game(&vars);
 	}
 	else if (argc == 1)

@@ -6,7 +6,7 @@
 #    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 13:30:00 by fschnorr          #+#    #+#              #
-#    Updated: 2025/03/06 12:18:30 by fschnorr         ###   ########.fr        #
+#    Updated: 2025/11/07 13:58:34 by fschnorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC =	$(addsuffix .c,								\
 								ft_isascii   		\
 								ft_isdigit   		\
 								ft_isprint   		\
+								ft_isspace  		\
 								ft_tolower   		\
 								ft_toupper   		\
         ))											\

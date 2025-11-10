@@ -6,24 +6,25 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/03 14:51:18 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:48:45 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef struct s_txt
+{
+	int		px_w;
+	int		px_h;
+	void	*img;
+}	t_txt;
+
 typedef struct s_map
 {
-	char	*file_path;
 	char	**grid;
-/* 	t_tile	**tile;
-	t_size	g_h;
-	t_size	g_w;
- */	int		fd;
-	int		exit_accessible;
-	int		collect_accessible;
-}			t_map;
+	t_txt	no;
+}	t_map;
 
 typedef struct s_player
 {
@@ -35,7 +36,7 @@ typedef struct s_player
 	bool	key_down;
 	bool	key_left;
 	bool	key_right;
-	
+
 	bool	left_rotate;
 	bool	right_rotate;
 }	t_player;

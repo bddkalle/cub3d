@@ -6,18 +6,11 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 23:13:54 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/10/29 15:05:06 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/07 14:12:21 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
-
-static int	ft_isspace(int c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (c);
-	return (0);
-}
 
 long	ft_atol(const char *str)
 {

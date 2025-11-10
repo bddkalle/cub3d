@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/06 16:27:42 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:04:32 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,20 @@
 # include <stdlib.h>
 # include <math.h>
 # include <errno.h>
+# include <fcntl.h>
 # include "../lib/minilibx-linux/mlx.h"
 # include "../lib/libft/includes/libft.h"
 # include "structs.h"
 
 //Init
-void	init_game(t_vars *vars);
+void	init_game(t_vars *vars, char *argv);
 
 //Error
 void	input_error(char *errmsg);
 void	fatal_error(t_vars *vars, char *errmsg, char *fctname);
 
 //Free
+void	free_null(void **ptr);
 void	free_all(t_vars *vars);
 
 //MLX
