@@ -3,18 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/06 15:02:24 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:33:15 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	draw_testline(t_vars *vars)
+bool	touch(float px, float py, t_vars *vars)
 {
-	int		i;
+	int	x;
+	int y;
+
+	x = px / BLOCK;
+	y = py / BLOCK;
+	if (vars->map.grid[y][x] == '1')
+		return (true);
+	else
+		return (false);
+}
+
+void	draw_ray(t_vars *vars, float start_angle)
+{
 	float	ray_x;
 	float	ray_y;
 	float	cos_angle;
@@ -22,14 +34,29 @@ void	draw_testline(t_vars *vars)
 
 	ray_x = vars->player.x;
 	ray_y = vars->player.y;
-	cos_angle = cos(vars->player.angle);
-	sin_angle = -sin(vars->player.angle);
-	i = 0;
-	while (i < 100)
+	cos_angle = cos(start_angle);
+	sin_angle = -sin(start_angle);
+	while (!touch(ray_x, ray_y, vars))
 	{
 		put_pixel(vars, ray_x, ray_y, 0xFF0000);
 		ray_x += cos_angle;
 		ray_y += sin_angle;
+	}
+}
+
+void	draw_fov(t_vars *vars)
+{
+	float	fraction;
+	float	start_angle;
+	int		i;
+
+	fraction = PI / 3 / WIDTH;
+	start_angle = vars->player.angle - PI / 6;
+	i = 0;
+	while (i < WIDTH)
+	{
+		draw_ray(vars, start_angle);
+		start_angle += fraction;
 		i++;
 	}
 }
@@ -77,7 +104,7 @@ int	draw_img(t_vars *vars)
 	clear_image(vars);
 	draw_map(vars);
 	draw_square(vars, vars->player.x, vars->player.y, 10, 0x00FF00);
-	draw_testline(vars);
+	draw_fov(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	return (0);
 }
