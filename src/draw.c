@@ -6,13 +6,14 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/11 14:33:15 by vboxuser         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:10:01 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include <stdbool.h>
 
-bool	touch(float px, float py, t_vars *vars)
+bool	touch(t_vars *vars, float px, float py)
 {
 	int	x;
 	int y;
@@ -25,39 +26,62 @@ bool	touch(float px, float py, t_vars *vars)
 		return (false);
 }
 
-void	draw_ray(t_vars *vars, float start_angle)
+float	distance(float dx, float dy)
+{
+	return (sqrt(dx * dx + dy * dy));
+}
+
+void	draw_line(t_vars *vars, float ray_x, float ray_y, int ray)
+{
+	float	d;
+	float	h;
+	int		start_y;
+	int		end;
+
+	d = distance(ray_x - vars->player.x, ray_y - vars->player.y);
+	h = (BLOCK / d) * (WIDTH / 2.0);
+
+
+	start_y = (HEIGHT - h) / 2;
+	end = start_y + h;
+	while (start_y < end)
+	{
+		put_pixel(vars, ray, start_y, 0x0000FF);
+		start_y++;
+	}
+}
+
+void	cast_ray(t_vars *vars, float alpha, int ray, bool draw_map)
 {
 	float	ray_x;
 	float	ray_y;
-	float	cos_angle;
-	float	sin_angle;
 
 	ray_x = vars->player.x;
 	ray_y = vars->player.y;
-	cos_angle = cos(start_angle);
-	sin_angle = -sin(start_angle);
-	while (!touch(ray_x, ray_y, vars))
+	while (!touch(vars, ray_x, ray_y))
 	{
-		put_pixel(vars, ray_x, ray_y, 0xFF0000);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
+		if (draw_map)
+			put_pixel(vars, ray_x, ray_y, 0xFF0000);
+		ray_x += cos(alpha);
+		ray_y -= sin(alpha);
 	}
+	draw_line(vars, ray_x, ray_y, ray);
 }
 
 void	draw_fov(t_vars *vars)
 {
 	float	fraction;
-	float	start_angle;
-	int		i;
+	float	fov_min;
+	int		ray;
 
 	fraction = PI / 3 / WIDTH;
-	start_angle = vars->player.angle - PI / 6;
-	i = 0;
-	while (i < WIDTH)
+	fov_min = vars->player.alpha - PI / 6;
+	ray = 0;
+	while (ray < WIDTH)
 	{
-		draw_ray(vars, start_angle);
-		start_angle += fraction;
-		i++;
+		cast_ray(vars, fov_min, ray, true);
+		fov_min += fraction;
+		ray++;
 	}
 }
 
