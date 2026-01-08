@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/05 16:10:51 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:08:35 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	move_player(t_vars *vars)
 	float	cos_angle;
 	float	sin_angle;
 
-	speed = 1;
+	speed = 10;
 	angle_speed = 0.05;
 	if (!isfinite(vars->player.angle))
 		fatal_error(vars, "Player angle is infinite.", "cos/sin");

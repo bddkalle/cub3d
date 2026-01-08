@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/07 16:48:45 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:51:57 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ typedef struct s_map
 {
 	char	**grid;
 	t_txt	no;
+	t_txt	so;
+	t_txt	we;
+	t_txt	ea;
+	int		floor[3];
+	int		ceiling[3];
 }	t_map;
 
 typedef struct s_player

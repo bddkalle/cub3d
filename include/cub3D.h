@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/07 15:04:32 by fschnorr         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:59:44 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 
 //Init
 void	init_game(t_vars *vars, char *argv);
+void	load_no_textures(t_vars *vars, char *line, int i, int fd);
+void	load_so_textures(t_vars *vars, char *line, int i, int fd);
+void	load_we_textures(t_vars *vars, char *line, int i, int fd);
+void	load_ea_textures(t_vars *vars, char *line, int i, int fd);
+void	set_floor_color(t_vars *vars, char *line, int i, int fd);
 
 //Error
 void	input_error(char *errmsg);
