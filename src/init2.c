@@ -13,11 +13,14 @@
 
 #include "../include/cub3D.h"
 
-/* void	set_floor_color(t_vars *vars, char *line, int i, int fd)
+void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 {
-	//hier WEITER 
+	i += 1;
+	while (ft_isspace(line[i]))
+		i++;
+	//HIER WEITER
 }
- */
+
 void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
