@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 16:51:57 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/06 18:13:10 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,27 @@ typedef struct s_txt
 	void	*img;
 }	t_txt;
 
+typedef enum e_wall_orient
+{
+	FALSE,
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+	UNDET,
+}	t_wall_orient;
+
 typedef struct s_map
 {
 	char	**grid;
 	t_txt	no;
-	t_txt	so;
-	t_txt	we;
-	t_txt	ea;
-	int		floor[3];
-	int		ceiling[3];
 }	t_map;
 
 typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	angle;
+	float	alpha;
 
 	bool	key_up;
 	bool	key_down;

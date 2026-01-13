@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 16:59:44 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:38:00 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@
 
 //Init
 void	init_game(t_vars *vars, char *argv);
-void	load_no_textures(t_vars *vars, char *line, int i, int fd);
-void	load_so_textures(t_vars *vars, char *line, int i, int fd);
-void	load_we_textures(t_vars *vars, char *line, int i, int fd);
-void	load_ea_textures(t_vars *vars, char *line, int i, int fd);
-void	set_floor_color(t_vars *vars, char *line, int i, int fd);
 
 //Error
 void	input_error(char *errmsg);
@@ -61,6 +56,8 @@ int		key_release(int keycode, t_vars *vars);
 void	put_pixel(t_vars *vars, int x, int y, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
+void	cast_ray(t_vars *vars, float beta, int ray, bool draw_map);
+t_wall_orient	touch(t_vars *vars, float px, float py);
 
 //Player
 void	init_player(t_player *player);
@@ -72,6 +69,9 @@ void	parse_map(t_vars *vars);
 //Validate
 void	validate_fileformat(char *s);
 void	validate_input_file(char *s);
+
+//helper DELETE LATER
+void	wall_detector_helper(t_vars *vars);
 
 
 #endif
