@@ -6,7 +6,7 @@
 #    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2025/11/21 14:03:33 by fschnorr         ###   ########.fr        #
+#    Updated: 2026/01/09 15:35:11 by fschnorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =	$(addsuffix .c,							\
 							hook				\
 							init				\
 							init2				\
+							init3				\
 							main				\
 							player				\
 		))										\
