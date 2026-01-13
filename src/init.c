@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/07 10:57:07 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/09 11:32:33 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	handle_line(t_vars *vars, char *line, int fd)
 			load_we_textures(vars, line, i, fd);
 		else if (ft_strncmp("EA", &line[i], 2) == 0)	//handle East texture
 			load_ea_textures(vars, line, i, fd);
-/* 		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle East texture
+		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle floor color
 			set_floor_color(vars, line, i, fd);
- */
+
 		free_null((void **)&line);
 		line = get_next_line(fd);
 	}
