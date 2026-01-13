@@ -1,6 +1,4 @@
 #include "../include/cub3D.h"
-#include <stdbool.h>
-#include <stdio.h>
 
 /*
 t_wall_orient	wall_orient(t_vars *vars, float px, float py)
@@ -77,8 +75,6 @@ void	draw_vertical_line(t_vars *vars, float ray_x, float ray_y, int ray, float b
 				ray_y - vars->player.y),\
 			beta);
 	h = (BLOCK / d) * (WIDTH / 2.0) / tan(PI / 6);
-
-
 	bottom = (HEIGHT - h) / 2;
 	top = bottom + h;
 	while (bottom < top)
