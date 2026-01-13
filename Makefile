@@ -6,7 +6,7 @@
 #    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/06 17:39:28 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/01/13 16:29:13 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC =	$(addsuffix .c,							\
 		$(addprefix src/, 						\
 							draw				\
 							draw_utils			\
+							draw_map			\
 							error				\
 							free				\
 							hook				\

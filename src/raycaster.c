@@ -98,7 +98,7 @@ void	cast_ray(t_vars *vars, float beta, int ray, bool draw_map)
 	while (!touch(vars, ray_x, ray_y))
 	{
 		if (draw_map)
-			put_pixel(vars, ray_x, ray_y, 0xFF0000);
+			put_pixel(vars, (int)ray_x / 4 + WIDTH / 4 * 3, (int)ray_y / 4 + HEIGHT / 4 * 3, 0xFF0000);
 		ray_x += cos(beta);
 		ray_y += sin(beta);
 	}
