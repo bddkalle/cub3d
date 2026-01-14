@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/13 16:28:42 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:56:04 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	draw_fov(t_vars *vars)
 {
 	float	rad_per_pixel;
 	float	fov_min;
-	int		ray;
+	int		ray_id;
 
 	rad_per_pixel = PI / 3 / WIDTH;
 	fov_min = vars->player.alpha - PI / 6;
-	ray = 0;
-	while (ray < WIDTH)
+	ray_id = 0;
+	while (ray_id < WIDTH)
 	{
-		cast_ray(vars, fov_min, ray, true);
+		cast_ray(vars, fov_min, ray_id, true);
 		fov_min += rad_per_pixel;
-		ray++;
+		ray_id++;
 	}
 }
 
@@ -51,8 +51,8 @@ int	draw_img(t_vars *vars)
 {
 	move_player(vars);
 	clear_image(vars);
-	draw_map(vars);
 	draw_fov(vars);
+	draw_map(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	wall_detector_helper(vars);
 	return (0);

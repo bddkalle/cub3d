@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 13:13:19 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:58:35 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	put_pixel(t_vars *vars, int x, int y, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
 void	cast_ray(t_vars *vars, float beta, int ray, bool draw_map);
-t_wall_orient	touch(t_vars *vars, float px, float py);
+bool	touch(t_vars *vars, float px, float py);
 void	draw_map(t_vars *vars);
+int		create_rgb(int	rgb[3]);
 
 //Player
 void	init_player(t_player *player);

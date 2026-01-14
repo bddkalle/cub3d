@@ -1,5 +1,10 @@
 #include "../include/cub3D.h"
 
+int		create_rgb(int	rgb[3])
+{
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+
 void	put_pixel(t_vars *vars, int x, int y, int color)
 {
 	int	index;
@@ -11,7 +16,6 @@ void	put_pixel(t_vars *vars, int x, int y, int color)
 	vars->img_addr[index + 1] = (color >> 8) & 0xFF;
 	vars->img_addr[index + 2] = (color >> 16) & 0xFF;
 }
-
 
 void	draw_square(t_vars *vars, int x, int y, int size, int color)
 {
