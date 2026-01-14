@@ -6,11 +6,36 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/10 13:13:46 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:13:49 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	handle_line(t_vars *vars, char *line, int fd)
+{
+	int	i;
+
+	while (line)
+	{
+		i = 0;
+		while (ft_isspace(line[i]))
+			i++;
+		if (ft_strncmp("NO", &line[i], 2) == 0)	//handle North texture
+			load_no_textures(vars, line, i, fd);
+		else if (ft_strncmp("SO", &line[i], 2) == 0)	//handle South texture
+			load_so_textures(vars, line, i, fd);
+		else if (ft_strncmp("WE", &line[i], 2) == 0)	//handle West texture
+			load_we_textures(vars, line, i, fd);
+		else if (ft_strncmp("EA", &line[i], 2) == 0)	//handle East texture
+			load_ea_textures(vars, line, i, fd);
+		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle floor color
+			set_floor_color(vars, line, i, fd);
+
+		free_null((void **)&line);
+		line = get_next_line(fd);
+	}
+}
 
 void	cub_interpreter(t_vars *vars, char *file)
 {

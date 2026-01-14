@@ -6,7 +6,7 @@
 #    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/13 16:29:13 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/01/14 13:14:10 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC =	$(addsuffix .c,							\
 							free				\
 							hook				\
 							init				\
+							init2				\
+							init3				\
 							main				\
 							player				\
 							raycaster			\

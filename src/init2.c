@@ -13,11 +13,32 @@
 
 #include "../include/cub3D.h"
 
-/* void	set_floor_color(t_vars *vars, char *line, int i, int fd)
+void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 {
-	//hier WEITER 
+	char	**color_arr;
+
+	i += 1;
+	while (ft_isspace(line[i]))
+		i++;
+	if (!valid_c(&line[i]) || ft_count_c(',', &line[i]) != 2)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Invalid color number format", "ste_floor_color");
+	}
+	color_arr = ft_split(&line[i], ',');
+	parse_color(vars, line, fd, color_arr);
+	free_null((void **)&color_arr[0]);
+	free_null((void **)&color_arr[1]);
+	free_null((void **)&color_arr[2]);
+	free_null((void **)&color_arr);
+
+	// printf("%d\n", vars->map.floor[0]);
+	// printf("%d\n", vars->map.floor[1]);
+	// printf("%d\n", vars->map.floor[2]);
 }
- */
+
 void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;

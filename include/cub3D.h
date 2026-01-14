@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/13 16:26:04 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:13:19 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,19 @@
 
 //Init
 void	init_game(t_vars *vars, char *argv);
+void	load_no_textures(t_vars *vars, char *line, int i, int fd);
+void	load_so_textures(t_vars *vars, char *line, int i, int fd);
+void	load_we_textures(t_vars *vars, char *line, int i, int fd);
+void	load_ea_textures(t_vars *vars, char *line, int i, int fd);
+void	set_floor_color(t_vars *vars, char *line, int i, int fd);
+void	parse_color(t_vars *vars, char *line, int fd, char **color_arr);
+int		ft_count_c(char c, char *str);
+int		valid_c(char *s);
 
 //Error
 void	input_error(char *errmsg);
 void	fatal_error(t_vars *vars, char *errmsg, char *fctname);
+void	parse_color_error(t_vars *vars, char *line, int fd, char **color_arr);
 
 //Free
 void	free_null(void **ptr);
