@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 19:40:01 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:33:10 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	cub_interpreter(t_vars *vars, char *file)
 	}
 	handle_line(vars, line, fd);
 	close(fd);
+	validate_textures(vars);
 }
 
 void	init_map(t_vars *vars)
@@ -69,6 +70,9 @@ void	init_vars(t_vars *vars)
 	init_player(&vars->player);
 	vars->map = (t_map){};
 	vars->map.no = (t_txt){};
+	vars->map.so = (t_txt){};
+	vars->map.we = (t_txt){};
+	vars->map.ea = (t_txt){};
 }
 
 void	init_game(t_vars *vars, char *file)

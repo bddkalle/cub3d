@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 16:51:57 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:49:54 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_map
 	t_txt	so;
 	t_txt	we;
 	t_txt	ea;
-	int		floor[3];
-	int		ceiling[3];
+	int		floor[4];
+	int		ceiling[4];
 }	t_map;
 
 typedef struct s_player

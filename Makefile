@@ -6,7 +6,7 @@
 #    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/09 15:35:11 by fschnorr         ###   ########.fr        #
+#    Updated: 2026/01/15 15:31:48 by fschnorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC =	$(addsuffix .c,							\
 		$(addsuffix .c,							\
 		$(addprefix src/validate/,				\
 							validate			\
+							validate2			\
 		))
 OBJS := $(SRC:.c=.o)
 

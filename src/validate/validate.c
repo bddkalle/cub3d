@@ -6,11 +6,59 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/06 16:24:00 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:12:04 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	validate_no(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.no.img != NULL)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd north texture identifier", \
+		"Error\nNO: load_no_textures");
+	}
+}
+
+void	validate_so(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.so.img != NULL)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd south texture identifier", \
+		"Error\nSO: load_so_textures");
+	}
+}
+
+void	validate_we(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.we.img != NULL)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd west texture identifier", \
+		"Error\nWE: load_we_textures");
+	}
+}
+
+void	validate_ea(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.ea.img != NULL)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd east texture identifier", \
+		"Error\nEA: load_ea_textures");
+	}
+}
 
 void	validate_fileformat(char *s)
 {
@@ -19,11 +67,6 @@ void	validate_fileformat(char *s)
 	l = ft_strlen(s) - 1;
 	if (s[l] != 'b' && s[l - 1] != 'u' && s[l - 2] != 'c' && s[l - 3] != '.')
 		input_error("Invalid fileformat - .cub file expected");
-}
-
-void	validate_input_file(char *s)
-{
-	validate_fileformat(s);
 }
 
 /* int	map_error(char *s)

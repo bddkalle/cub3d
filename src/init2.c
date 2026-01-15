@@ -17,6 +17,7 @@ void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 {
 	char	**color_arr;
 
+	validate_f(vars, line, fd);
 	i += 1;
 	while (ft_isspace(line[i]))
 		i++;
@@ -33,12 +34,14 @@ void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 	free_null((void **)&color_arr[1]);
 	free_null((void **)&color_arr[2]);
 	free_null((void **)&color_arr);
+	vars->map.floor[3] += 1;
 }
 
 void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
+	validate_so(vars, line, fd);
 	i += 2;
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
@@ -67,6 +70,7 @@ void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
+	validate_we(vars, line, fd);
 	i += 2;
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
@@ -95,6 +99,7 @@ void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
+	validate_ea(vars, line, fd);
 	i += 2;
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
@@ -123,6 +128,7 @@ void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
+	validate_no(vars, line, fd);
 	i += 2;
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)

@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 19:48:22 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:05:01 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ void	parse_map(t_vars *vars);
 
 //Validate
 void	validate_fileformat(char *s);
-void	validate_input_file(char *s);
-
+void	validate_no(t_vars *vars, char *line, int fd);
+void	validate_so(t_vars *vars, char *line, int fd);
+void	validate_we(t_vars *vars, char *line, int fd);
+void	validate_ea(t_vars *vars, char *line, int fd);
+void	validate_textures(t_vars *vars);
+void	validate_f(t_vars *vars, char *line, int fd);
+void	validate_c(t_vars *vars, char *line, int fd);
 
 #endif
