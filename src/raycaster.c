@@ -23,9 +23,9 @@ t_wall_orient	wall_orient(t_vars *vars, float px, float py)
 
 /* wall orientation is determined by rounding down ray coordinates when grid=1 is touched.
 For edge cases it is necessary to check wether angle is left/right or up/down */
-t_wall_touch	wall_info(t_vars *vars, float px, float py, float beta)
+t_touch	wall_info(t_vars *vars, float px, float py, float beta)
 {
-	t_wall_touch	wall_touch;
+	t_touch	wall_touch;
 	(void)vars;
 	if ((int)px % BLOCK == 0 && cos(beta) > 0)
 	{
@@ -76,32 +76,8 @@ float	correct_distance(t_vars *vars, float dist_d, float beta)
 {
 	return (dist_d * cos(beta - vars->player.alpha));
 }
-/*
-void	draw_vertical_line(t_vars *vars, float ray_x, float ray_y, int ray_id, float beta)
-{
-	float	d;
-	float	h;
-	int		bottom;
-	int		top;
 
-	d = correct_distance(
-			vars,\
-			distance(\
-				ray_x - vars->player.x,\
-				ray_y - vars->player.y),\
-			beta);
-	h = (BLOCK / d) * (WIDTH / 2.0) / tan(PI / 6);
-	bottom = (HEIGHT - h) / 2;
-	top = bottom + h;
-	while (bottom < top)
-	{
-		put_pixel(vars, ray_id, bottom, 0x0000FF);
-		bottom++;
-	}
-}
-*/
-
-void	draw_vertical_line(t_vars *vars, int ray_id, float dist, t_wall_touch wall_touch)
+void	draw_vertical_line(t_vars *vars, int ray_id, float dist, t_touch wall_touch)
 {
 	float	wall_height;
 	int		wall_bottom;
@@ -131,7 +107,7 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 	float			ray_x;
 	float			ray_y;
 	float			dist;
-	t_wall_touch	wall_touch;
+	t_touch	wall_touch;
 
 	ray_x = vars->player.x;
 	ray_y = vars->player.y;

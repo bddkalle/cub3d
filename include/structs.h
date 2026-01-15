@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 16:14:28 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:43:11 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ typedef struct s_map
 	int		ceiling[3];
 }	t_map;
 
-typedef enum s_wall_orient
+typedef enum s_wall
 {
 	FALSE,
 	NORTH,
 	EAST,
 	SOUTH,
 	WEST,
-}	t_wall_orient;
+}	t_wall;
 
-typedef struct s_wall_touch
+typedef struct s_touch
 {
-	t_wall_orient	wall_orient;
-	int				offset;
-} t_wall_touch;
+	t_wall	wall_orient;
+	int		offset;
+} t_touch;
 
 typedef struct s_player
 {

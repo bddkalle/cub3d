@@ -6,7 +6,7 @@
 #    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/15 16:09:35 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/01/15 16:30:17 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC =	$(addsuffix .c,							\
 		$(addprefix src/, 						\
 							draw				\
 							draw_map			\
-							draw_utils.C		\
+							draw_utils			\
 							error				\
 							free				\
 							hook				\
@@ -27,7 +27,7 @@ SRC =	$(addsuffix .c,							\
 							main				\
 							player				\
 							raycaster			\
-							textures			\
+							texture				\
 		))										\
 		$(addsuffix .c,							\
 		$(addprefix src/map/,					\
