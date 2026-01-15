@@ -29,7 +29,7 @@ void	wall_detector_helper(t_vars *vars)
 		ray_x += cos(vars->player.alpha);
 		ray_y += sin(vars->player.alpha);
 	}
-	t_wall_orient	wall;
+	t_wall	wall;
 	wall = touch(vars, ray_x, ray_y);
 	printf("ray_x: %f | (int)rayx: %d | ray_x %% 64: %d\n", ray_x, (int)ray_x, (int)ray_x % 64);
 	printf("ray_y: %f | (int)rayy: %d | ray_y %% 64: %d\n", ray_y, (int)ray_y, (int)ray_y % 64);
