@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 16:18:11 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:38:43 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int		create_rgb(int	rgb[3]);
 //Raycaster
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
 bool	touch(t_vars *vars, float px, float py);
+
+//Projection
+float	distance(float dx, float dy);
+float	correct_distance(t_vars *vars, float dist_d, float beta);
+void	wall_projection(t_touch *touch);
 
 //Player
 void	init_player(t_player *player);
