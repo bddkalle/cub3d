@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 16:05:01 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 20:12:14 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,17 @@ int		key_release(int keycode, t_vars *vars);
 void	put_pixel(t_vars *vars, int x, int y, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
+void	draw_map(t_vars *vars);
+int		create_rgb(int	rgb[3]);
+
+//Raycaster
+void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
+bool	touch(t_vars *vars, float px, float py);
+
+//Projection
+float	distance(float dx, float dy);
+float	correct_distance(t_vars *vars, float dist_d, float beta);
+void	wall_projection(t_touch *touch);
 
 //Player
 void	init_player(t_player *player);

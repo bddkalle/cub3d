@@ -6,7 +6,7 @@
 #    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/15 15:31:48 by fschnorr         ###   ########.fr        #
+#    Updated: 2026/01/15 20:13:15 by fschnorr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ INCLUDE = -I include $(LIBFT_INCLUDES) $(MLX_INCLUDE) $(LAPI_INCLUDE)
 SRC =	$(addsuffix .c,							\
 		$(addprefix src/, 						\
 							draw				\
+							draw_map			\
+							draw_utils			\
 							error				\
 							free				\
 							hook				\
@@ -24,6 +26,9 @@ SRC =	$(addsuffix .c,							\
 							init3				\
 							main				\
 							player				\
+							raycaster			\
+							texture				\
+							projection			\
 		))										\
 		$(addsuffix .c,							\
 		$(addprefix src/map/,					\
@@ -58,7 +63,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR) $(MFLAGS)
 	@echo -n "run cc for $(NAME)..."
-	@$(CC) $^ $(LIBFT_AR) $(MLX_LINK) $(LAPI_LINK) -o $(NAME) $(CFLAGS) $(INCLUDE) 
+	@$(CC) $^ $(LIBFT_AR) $(MLX_LINK) $(LAPI_LINK) -o $(NAME) $(CFLAGS) $(INCLUDE)
 	@echo "done"
 
 %.o: %.c
@@ -109,6 +114,6 @@ setup:
 	@echo "Configuring MiniLibX..."
 	@cd $(MLX_DIR) && ./configure
 	@echo "MiniLibX setup complete."
-	
+
 
 .PHONY: all setup clean fclean re debug run valgrind checkup norm setup 42_setup
