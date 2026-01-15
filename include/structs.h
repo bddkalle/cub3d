@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 16:51:57 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:43:11 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ typedef struct s_txt
 	int		px_w;
 	int		px_h;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 }	t_txt;
 
 typedef struct s_map
@@ -31,11 +35,26 @@ typedef struct s_map
 	int		ceiling[3];
 }	t_map;
 
+typedef enum s_wall
+{
+	FALSE,
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+}	t_wall;
+
+typedef struct s_touch
+{
+	t_wall	wall_orient;
+	int		offset;
+} t_touch;
+
 typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	angle;
+	float	alpha;
 
 	bool	key_up;
 	bool	key_down;
