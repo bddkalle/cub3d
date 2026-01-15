@@ -42,8 +42,6 @@ void	wall_detector_helper(t_vars *vars)
 		printf("SOUTH\n");
 	if (wall == WEST)
 		printf("WEST\n");
-	if (wall == UNDET)
-		printf("UNDET\n");
 	if (wall == FALSE)
 		printf("FALSE\n");
 }
