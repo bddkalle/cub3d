@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 16:53:28 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:08:51 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +24,14 @@ void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 		close(fd);
 		free_null((void **)&line);
 		get_next_line(-1);
-		fatal_error(vars, "Invalid color number format", "ste_floor_color");
+		fatal_error(vars, "Invalid color number format", "set_floor_color");
 	}
 	color_arr = ft_split(&line[i], ',');
-	parse_color(vars, line, fd, color_arr);
+	parse_floor_color(vars, line, fd, color_arr);
 	free_null((void **)&color_arr[0]);
 	free_null((void **)&color_arr[1]);
 	free_null((void **)&color_arr[2]);
 	free_null((void **)&color_arr);
-
-	// printf("%d\n", vars->map.floor[0]);
-	// printf("%d\n", vars->map.floor[1]);
-	// printf("%d\n", vars->map.floor[2]);
 }
 
 void	load_so_textures(t_vars *vars, char *line, int i, int fd)

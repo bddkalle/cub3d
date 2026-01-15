@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 14:58:35 by vboxuser         ###   ########.fr       */
+/*   Created: 2026/01/15 12:12:14 by vboxuser          #+#    #+#             */
+/*   Updated: 2026/01/15 12:12:17 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	load_so_textures(t_vars *vars, char *line, int i, int fd);
 void	load_we_textures(t_vars *vars, char *line, int i, int fd);
 void	load_ea_textures(t_vars *vars, char *line, int i, int fd);
 void	set_floor_color(t_vars *vars, char *line, int i, int fd);
-void	parse_color(t_vars *vars, char *line, int fd, char **color_arr);
+void	set_ceiling_color(t_vars *vars, char *line, int i, int fd);
+void	parse_floor_color(t_vars *vars, char *line, int fd, char **color_arr);
+void	parse_ceiling_color(t_vars *vars, char *line, int fd, char **color_arr);
 int		ft_count_c(char c, char *str);
 int		valid_c(char *s);
 

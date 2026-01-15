@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 14:08:04 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:56:49 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ typedef struct s_txt
 	int		px_w;
 	int		px_h;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 }	t_txt;
 
 typedef enum e_wall_orient

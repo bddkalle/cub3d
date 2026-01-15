@@ -107,8 +107,9 @@ void	draw_vertical_line(t_vars *vars, int ray_id, float dist, t_wall_touch wall_
 	int		wall_bottom;
 	int		wall_top;
 	int		y;
-	int		color[3];
 
+	//if (ray_id == WIDTH / 2)
+	//	printf("wall orient: %d, offset: %d\n", wall_touch.wall_orient, wall_touch.offset);
 	(void)wall_touch;
 	wall_height = (BLOCK / dist) * (WIDTH / 2.0) / tan(PI / 6);
 	wall_top = (HEIGHT - wall_height) / 2;
@@ -118,7 +119,8 @@ void	draw_vertical_line(t_vars *vars, int ray_id, float dist, t_wall_touch wall_
 		put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
 	while (y > wall_top)
 	{
-		put_pixel(vars, ray_id, y--, create_rgb(color)); //replace by texture
+
+		put_pixel(vars, ray_id, y--, 0x0000FF); //replace by texture
 	}
 	while (y >= 0)
 		put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));

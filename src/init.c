@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/14 13:13:49 by vboxuser         ###   ########.fr       */
+/*   Created: 2026/01/15 12:12:25 by vboxuser          #+#    #+#             */
+/*   Updated: 2026/01/15 12:12:27 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	handle_line(t_vars *vars, char *line, int fd)
 			load_ea_textures(vars, line, i, fd);
 		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle floor color
 			set_floor_color(vars, line, i, fd);
+		else if (ft_strncmp("C", &line[i], 1) == 0)	//handle ceiling color
+			set_ceiling_color(vars, line, i, fd);
 
 		free_null((void **)&line);
 		line = get_next_line(fd);
