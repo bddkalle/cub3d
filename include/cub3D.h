@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 20:12:14 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:35:32 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	parse_floor_color(t_vars *vars, char *line, int fd, char **color_arr);
 void	parse_ceiling_color(t_vars *vars, char *line, int fd, char **color_arr);
 int		ft_count_c(char c, char *str);
 int		valid_c(char *s);
+void	set_img_addr(t_vars *vars, char *line, int fd, t_txt txt);
 
 //Error
 void	input_error(char *errmsg);
@@ -84,7 +85,8 @@ void	init_player(t_player *player);
 void	move_player(t_vars *vars);
 
 //Map
-void	parse_map(t_vars *vars);
+void	parse_map(t_vars *vars, char *line, int fd);
+int		map_detected(t_vars *vars, char *s);
 
 //Validate
 void	validate_fileformat(char *s);
