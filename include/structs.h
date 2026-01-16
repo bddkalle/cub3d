@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 17:30:39 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/15 20:14:21 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_map
 	t_txt	so;
 	t_txt	we;
 	t_txt	ea;
-	int		floor[3];
-	int		ceiling[3];
+	int		floor[4];
+	int		ceiling[4];
 }	t_map;
 
 typedef enum s_wall

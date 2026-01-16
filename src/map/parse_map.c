@@ -6,11 +6,21 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:24:03 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/05 16:31:24 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:52:26 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	extract_map(t_vars *vars, char *line, int fd)
+{
+	(void)vars;
+	while (line)
+	{
+		free_null((void **)&line);
+		line = get_next_line(fd);
+	}
+}
 
 /* void	get_map_size(t_map	*map, t_vars *vars)
 {
@@ -39,8 +49,10 @@
 		exit (map_error("Empty map"));
 }
  */
-void	parse_map(t_vars *vars)
+void	parse_map(t_vars *vars, char *line, int fd)
 {
+	extract_map(vars, line, fd);
+	// normalize_map(vars, line, fd);
 	vars->map.grid = malloc(sizeof(char *) * 11);
 	if (!vars->map.grid)
 		fatal_error(vars, "Could not allocate grid", "malloc");

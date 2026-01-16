@@ -6,14 +6,37 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:28:22 by fschnorr          #+#    #+#             */
-/*   Updated: 2024/12/05 14:43:34 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 22:19:58 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
-#include <fcntl.h>
+#include "../../include/cub3D.h"
 
-void	init_grid_fill(t_vars *vars, t_point *grid_pos)
+int	is_map_char(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || \
+		c == 'E' || c == 'W' || c == ' ')
+		return (1);
+	return (0);
+}
+
+int	map_detected(t_vars *vars, char *s)
+{																		// check: alle idents vorhanden
+	if (vars->map.no.img != NULL && vars->map.so.img != NULL \
+	&& vars->map.we.img != NULL && vars->map.ea.img != NULL \
+	&& vars->map.floor[3] == 1 && vars->map.ceiling[3] == 1)
+	{
+		if (!is_map_char(*s))
+			return (0);
+		while (is_map_char(*s))
+			s++;
+		if (*s == '\n')
+			return (1);
+	}
+	return (0);
+}
+
+/* void	init_grid_fill(t_vars *vars, t_point *grid_pos)
 {
 	vars->map.fd = open(vars->map.file_path, O_RDONLY);
 	if (vars->map.fd == -1)
@@ -71,3 +94,4 @@ void	fill_grids(t_vars *vars, t_point grid_pos, char *line)
 	}
 	count_chars(vars, grid_pos);
 }
+ */
