@@ -6,13 +6,58 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2024/12/05 14:44:10 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:04:54 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
-int	wall_check(t_vars *vars)
+void	validate_c(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.ceiling[3] > 0)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd ceiling identifier", \
+		"Error\nCEILING: cub_interpreter");
+	}
+}
+
+void	validate_f(t_vars *vars, char *line, int fd)
+{
+	if (vars->map.floor[3] > 0)
+	{
+		close(fd);
+		free_null((void **)&line);
+		get_next_line(-1);
+		fatal_error(vars, "Found 2nd floor identifier", \
+		"Error\nFLOOR: cub_interpreter");
+	}
+}
+
+
+void	validate_textures(t_vars *vars)
+{
+	if (!vars->map.no.img)
+		fatal_error(vars, "Missing north texture", \
+		"Error\ncub_interpreter");
+	if (!vars->map.so.img)
+		fatal_error(vars, "Missing south texture", \
+		"Error\ncub_interpreter");
+
+	if (!vars->map.we.img)
+		fatal_error(vars, "Missing west texture", \
+		"Error\ncub_interpreter");
+
+	if (!vars->map.ea.img)
+		fatal_error(vars, "Missing east texture", \
+		"Error\ncub_interpreter");
+
+}
+
+
+/* int	wall_check(t_vars *vars)
 {
 	t_point	current;
 
@@ -57,3 +102,4 @@ void	valid_path(t_vars *vars, t_point p)
 	valid_path(vars, (t_point){p.px_x, p.px_y - 1});
 	valid_path(vars, (t_point){p.px_x, p.px_y + 1});
 }
+ */

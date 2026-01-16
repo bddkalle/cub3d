@@ -17,6 +17,7 @@ void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 {
 	char	**color_arr;
 
+	validate_f(vars, line, fd);
 	i += 1;
 	while (ft_isspace(line[i]))
 		i++;
@@ -33,13 +34,14 @@ void	set_floor_color(t_vars *vars, char *line, int i, int fd)
 	free_null((void **)&color_arr[1]);
 	free_null((void **)&color_arr[2]);
 	free_null((void **)&color_arr);
+	vars->map.floor[3] += 1;
 }
 
 void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
-	i += 2;
+	validate_so(vars, line, fd);
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
 	{
@@ -61,13 +63,14 @@ void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 	"Error\nSO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
+	set_img_addr(vars, line, fd, vars->map.so);
 }
 
 void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
-	i += 2;
+	validate_we(vars, line, fd);
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
 	{
@@ -89,13 +92,14 @@ void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 	"Error\nWE: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
+	set_img_addr(vars, line, fd, vars->map.we);
 }
 
 void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
-	i += 2;
+	validate_ea(vars, line, fd);
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
 	{
@@ -117,13 +121,14 @@ void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 	"Error\nEA: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
+	set_img_addr(vars, line, fd, vars->map.ea);
 }
 
 void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 {
 	char	*filename;
 
-	i += 2;
+	validate_no(vars, line, fd);
 	filename = ft_strtrim(&line[i], " \n");
 	if (!filename)
 	{
@@ -145,4 +150,5 @@ void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 	"Error\nNO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
+	set_img_addr(vars, line, fd, vars->map.no);
 }

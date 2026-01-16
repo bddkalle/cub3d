@@ -17,6 +17,7 @@ void	set_ceiling_color(t_vars *vars, char *line, int i, int fd)
 {
 	char	**color_arr;
 
+	validate_c(vars, line, fd);
 	i += 1;
 	while (ft_isspace(line[i]))
 		i++;
@@ -33,6 +34,7 @@ void	set_ceiling_color(t_vars *vars, char *line, int i, int fd)
 	free_null((void **)&color_arr[1]);
 	free_null((void **)&color_arr[2]);
 	free_null((void **)&color_arr);
+	vars->map.ceiling[3] += 1;
 }
 
 int	valid_c(char *s)
