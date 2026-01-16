@@ -72,11 +72,23 @@ bool	touch(t_vars *vars, float px, float py)
 		return (true);
 }
 
-void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *touch)
+void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *touch, bool draw_map)
 {
 	int		y;
 
 	y = HEIGHT - 1;
+	while (y >= 0)
+	{
+		if (draw_map && ray_id >= WIDTH / 4 * 3 && y >= HEIGHT / 4 * 3)
+			y--;
+		else if (y > touch->wall_bottom)
+			put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
+		else if (y > touch->wall_top)
+			put_pixel(vars, ray_id, y--, 0x0000FF); //replace by texture
+		else
+			put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));
+	}
+	/*
 	while (y > touch->wall_bottom)
 		put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
 	while (y > touch->wall_top)
@@ -85,6 +97,7 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *touch)
 	}
 	while (y >= 0)
 		put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));
+		*/
 }
 
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
@@ -102,9 +115,7 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 		ray_x += cos(beta);
 		ray_y += sin(beta);
 	}
-	//wall_slice = malloc(sizeof(t_touch));
 	wall_info(vars, &wall_slice, ray_x, ray_y, beta);
 	//draw_vertical_line(vars, ray_x, ray_y, ray_id, beta);
-	draw_vertical_line(vars, ray_id, &wall_slice);
-	//free(wall_slice);
+	draw_vertical_line(vars, ray_id, &wall_slice, draw_map);
 }
