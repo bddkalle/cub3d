@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 11:35:32 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:27:20 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse_floor_color(t_vars *vars, char *line, int fd, char **color_arr);
 void	parse_ceiling_color(t_vars *vars, char *line, int fd, char **color_arr);
 int		ft_count_c(char c, char *str);
 int		valid_c(char *s);
-void	set_img_addr(t_vars *vars, char *line, int fd, t_txt txt);
+void	set_img_addr(t_vars *vars, char *line, int fd, t_txt *txt);
 
 //Error
 void	input_error(char *errmsg);
@@ -74,6 +74,7 @@ int		create_rgb(int	rgb[3]);
 //Raycaster
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
 bool	touch(t_vars *vars, float px, float py);
+int		get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y);
 
 //Projection
 float	distance(float dx, float dy);

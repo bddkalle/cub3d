@@ -1,21 +1,21 @@
 #include "../include/cub3D.h"
 
-/*
-int	get_color_from_txt(t_txt *txt, float ray_x, float ray_y, float h)
+
+int	get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y)
 {
-	int	txt_px;
-	int	txt_py;
+	char	*addr;
+	int		index;
+	int		color;
 
-	txt_px = ray_x - ((ray_x / BLOCK) * BLOCK);
-	return (0);
-}*/
-/*
-int		get_color_from_txt(t_vars *vars, t_wall_touch wall_touch, int y)
-{
-	int	color;
-
-
-}*/
+	(void)vars;
+	(void)y;
+	(void)index;
+	y = y / HEIGHT * BLOCK;
+	addr = wall_slice->txt->addr;
+	index = y * wall_slice->txt->size_line + wall_slice->offset * (wall_slice->txt->bits_per_pixel / 8);
+	color = (addr[index] & 0xFF) | ((addr[index + 1] & 0xFF) << 8) | ((addr[index + 2] & 0xFF) << 16) | ((addr[index + 3] & 0xFF) << 24);
+	return (color);
+}
 
 void	wall_detector_helper(t_vars *vars)
 {

@@ -23,33 +23,37 @@ t_wall_orient	wall_orient(t_vars *vars, float px, float py)
 
 /* wall orientation is determined by rounding down ray coordinates when grid=1 is touched.
 For edge cases it is necessary to check wether angle is left/right or up/down */
-void	wall_orientation(t_touch *wall_slice, float px, float py, float beta)
+void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, float beta)
 {
 	if ((int)px % BLOCK == 0 && cos(beta) > 0)
 	{
 		wall_slice->wall_orient = WEST;
-		wall_slice->offset = (int)py;
+		wall_slice->txt = &vars->map.we;
+		wall_slice->offset = (int)py % BLOCK;
 	}
 	if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0)
 	{
 		wall_slice->wall_orient = EAST;
-		wall_slice->offset = BLOCK - (int)py;
+		wall_slice->txt = &vars->map.ea;
+		wall_slice->offset = (int)py % BLOCK;
 	}
 	if ((int)py % BLOCK == 0 && sin(beta) > 0)
 	{
 		wall_slice->wall_orient = NORTH;
-		wall_slice->offset = (int)px;
+		wall_slice->txt = &vars->map.no;
+		wall_slice->offset = (int)px % BLOCK;
 	}
 	if ((int)py % BLOCK == BLOCK - 1 && sin(beta) < 0)
 	{
 		wall_slice->wall_orient = SOUTH;
-		wall_slice->offset = (int)py;
+		wall_slice->txt = &vars->map.so;
+		wall_slice->offset = (int)py % BLOCK;
 	}
 }
 
 void	wall_info(t_vars *vars, t_touch *wall_slice, float px, float py, float beta)
 {
-	wall_orientation(wall_slice, px, py, beta);
+	wall_orientation(vars, wall_slice, px, py, beta);
 	wall_slice->distance = correct_distance(
 			vars,\
 			distance(\
@@ -72,32 +76,26 @@ bool	touch(t_vars *vars, float px, float py)
 		return (true);
 }
 
-void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *touch, bool draw_map)
+void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map)
 {
 	int		y;
+	int		color;
 
 	y = HEIGHT - 1;
 	while (y >= 0)
 	{
 		if (draw_map && ray_id >= WIDTH / 4 * 3 && y >= HEIGHT / 4 * 3)
 			y--;
-		else if (y > touch->wall_bottom)
+		else if (y > wall_slice->wall_bottom)
 			put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
-		else if (y > touch->wall_top)
-			put_pixel(vars, ray_id, y--, 0x0000FF); //replace by texture
+		else if (y > wall_slice->wall_top)
+		{
+			color = get_color_from_txt(vars, wall_slice, y);
+			put_pixel(vars, ray_id, y--, color);
+		}
 		else
 			put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));
 	}
-	/*
-	while (y > touch->wall_bottom)
-		put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
-	while (y > touch->wall_top)
-	{
-		put_pixel(vars, ray_id, y--, 0x0000FF); //replace by texture
-	}
-	while (y >= 0)
-		put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));
-		*/
 }
 
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
