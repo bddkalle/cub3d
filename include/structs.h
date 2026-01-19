@@ -6,12 +6,13 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 20:14:21 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/19 23:19:31 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+# include "../lib/libft/includes/libft.h"
 
 typedef struct s_txt
 {
@@ -24,16 +25,44 @@ typedef struct s_txt
 	int		endian;
 }	t_txt;
 
+typedef enum e_tile
+{
+	FLOOR = '0',
+	WALL = '1',
+	NORTH_SP = 'N',
+	SOUTH_SP = 'S',
+	EAST_SP = 'E',
+	WEST_SP = 'W',
+	SPACE = ' '
+}	t_tile_type;
+
+typedef struct s_tile
+{
+	t_tile_type	type;
+	int			visited;
+}				t_tile;
+
 typedef struct s_map
 {
+	char	**grid3;
 	char	**grid;
+	t_tile	**tile;
+	t_size	g_h;
+	t_size	g_w;
 	t_txt	no;
 	t_txt	so;
 	t_txt	we;
 	t_txt	ea;
 	int		floor[4];
 	int		ceiling[4];
+	int		start_found;
 }	t_map;
+
+typedef struct s_point
+{
+	t_size	px_x;
+	t_size	px_y;
+}	t_point;
 
 typedef enum s_wall
 {
@@ -52,10 +81,11 @@ typedef struct s_touch
 	float	wall_height;
 	int		wall_bottom;
 	int		wall_top;
-} t_touch;
+}	t_touch;
 
 typedef struct s_player
 {
+	t_point	start;
 	float	x;
 	float	y;
 	float	alpha;

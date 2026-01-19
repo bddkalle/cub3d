@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 15:12:04 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/17 23:49:10 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	validate_no(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd north texture identifier", \
-		"Error\nNO: load_no_textures");
+		"NO: load_no_textures");
 	}
 }
 
@@ -32,7 +32,7 @@ void	validate_so(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd south texture identifier", \
-		"Error\nSO: load_so_textures");
+		"SO: load_so_textures");
 	}
 }
 
@@ -44,7 +44,7 @@ void	validate_we(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd west texture identifier", \
-		"Error\nWE: load_we_textures");
+		"WE: load_we_textures");
 	}
 }
 
@@ -56,7 +56,7 @@ void	validate_ea(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd east texture identifier", \
-		"Error\nEA: load_ea_textures");
+		"EA: load_ea_textures");
 	}
 }
 
@@ -74,14 +74,6 @@ void	validate_fileformat(char *s)
 	ft_printf("Error\n");
 	ft_printf("%s\n", s);
 	return (1);
-}
-
-int	valid_map_chars(t_tile_type tile)
-{
-	if (tile == FLOOR || tile == WALL || tile == COLLECT || tile == EXIT || \
-		tile == START)
-		return (1);
-	return (0);
 }
 
 void	count_chars(t_vars *vars, t_point grid_pos)

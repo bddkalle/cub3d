@@ -6,13 +6,13 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 11:46:34 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/19 12:39:47 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-char	*handle_line(t_vars *vars, char *line, int fd)
+char	*parse_textures(t_vars *vars, char *line, int fd)
 {
 	int	i;
 
@@ -55,10 +55,14 @@ void	cub_interpreter(t_vars *vars, char *file)
 		close(fd);
 		fatal_error(vars, "Could not read from .cub file", "get_next_line");
 	}
-	line = handle_line(vars, line, fd);
+	line = parse_textures(vars, line, fd);
 	validate_textures(vars);
-	printf("%s\n", line);
-	parse_map(vars, line, fd);
+	if (!line)
+	{
+		close(fd);
+		fatal_error(vars, "No map included", "cub_interpreter");
+	}
+	parse_map(vars, line, fd, file);
 	close(fd);
 }
 
@@ -83,10 +87,9 @@ void	init_game(t_vars *vars, char *file)
 {
 	init_vars(vars);
 	vars->mlx = mlx_init();
-	cub_interpreter(vars, file);
-	// init_map(vars);
 	if (!vars->mlx)
 		fatal_error(vars, "Could not initiate mlx session", "mlx_init");
+	cub_interpreter(vars, file);
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!vars->win)
 		fatal_error(vars, "Could not initiate new window", "mlx_new_window");

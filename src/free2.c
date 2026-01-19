@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init4.c                                            :+:      :+:    :+:   */
+/*   free2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 11:04:39 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:01:13 by fschnorr         ###   ########.fr       */
+/*   Created: 2025/10/30 13:36:20 by fschnorr          #+#    #+#             */
+/*   Updated: 2026/01/19 10:41:17 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	set_img_addr(t_vars *vars, char *line, int fd, t_txt txt)
+void	free_incomplete_grid(t_vars *vars, t_point grid_pos)
 {
-	txt.addr = mlx_get_data_addr(txt.img, &txt.bits_per_pixel, \
-	&txt.size_line, &txt.endian);
-	if (!txt.addr || txt.bits_per_pixel <= 0 || txt.size_line <= 0)
+	int	tmp;
+
+	tmp = grid_pos.px_y + 1;
+	while (--tmp >= 0)
 	{
-		close(fd);
-		free_null((void **)&line);
-		get_next_line(-1);
-		fatal_error(vars, "Could not set image address for texture", \
-	"mlx_get_data_addr");
+		free(vars->map.grid[tmp]);
+		vars->map.grid[tmp] = NULL;
+		free(vars->map.tile[tmp]);
+		vars->map.tile[tmp] = NULL;
 	}
+	free(vars->map.grid);
+	vars->map.grid = NULL;
+	free(vars->map.tile);
+	vars->map.tile = NULL;
 }

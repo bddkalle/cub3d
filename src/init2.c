@@ -49,7 +49,7 @@ void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Could not trim path to texture", \
-		"Error\nSO: ft_strtrim");
+		"SO: ft_strtrim");
 	}
 	vars->map.so.img = mlx_xpm_file_to_image(vars->mlx, filename, \
 	&vars->map.so.px_w, &vars->map.so.px_h);
@@ -60,7 +60,7 @@ void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&filename);
 		get_next_line(-1);
 		fatal_error(vars, "Could not create south texture", \
-	"Error\nSO: mlx_xpm_file_to_image");
+	"SO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
 	set_img_addr(vars, line, fd, vars->map.so);
@@ -78,7 +78,7 @@ void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Could not trim path to texture", \
-		"Error\nWE: ft_strtrim");
+		"WE: ft_strtrim");
 	}
 	vars->map.we.img = mlx_xpm_file_to_image(vars->mlx, filename, \
 	&vars->map.we.px_w, &vars->map.we.px_h);
@@ -89,7 +89,7 @@ void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&filename);
 		get_next_line(-1);
 		fatal_error(vars, "Could not create west texture", \
-	"Error\nWE: mlx_xpm_file_to_image");
+	"WE: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
 	set_img_addr(vars, line, fd, vars->map.we);
@@ -107,7 +107,7 @@ void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Could not trim path to texture", \
-		"Error\nEA: ft_strtrim");
+		"EA: ft_strtrim");
 	}
 	vars->map.ea.img = mlx_xpm_file_to_image(vars->mlx, filename, \
 	&vars->map.ea.px_w, &vars->map.ea.px_h);
@@ -118,7 +118,7 @@ void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&filename);
 		get_next_line(-1);
 		fatal_error(vars, "Could not create east texture", \
-	"Error\nEA: mlx_xpm_file_to_image");
+	"EA: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
 	set_img_addr(vars, line, fd, vars->map.ea);
@@ -136,7 +136,7 @@ void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Could not trim path to texture", \
-		"Error\nNO: ft_strtrim");
+		"NO: ft_strtrim");
 	}
 	vars->map.no.img = mlx_xpm_file_to_image(vars->mlx, filename, \
 	&vars->map.no.px_w, &vars->map.no.px_h);
@@ -147,7 +147,7 @@ void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 		free_null((void **)&filename);
 		get_next_line(-1);
 		fatal_error(vars, "Could not create north texture", \
-	"Error\nNO: mlx_xpm_file_to_image");
+	"NO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
 	set_img_addr(vars, line, fd, vars->map.no);

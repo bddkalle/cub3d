@@ -6,11 +6,29 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 16:04:54 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/19 00:23:20 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	validate_map(t_vars *vars)
+{
+	if (vars->map.start_found != 1)
+		fatal_error(vars, "Invalid start count", "validate_map");
+	if (wall_check(vars))
+		fatal_error(vars, "No surrounding walls", "validate_map");
+}
+
+
+int	valid_map_chars(t_tile_type tile)
+{
+	// printf("tile = %d\n", tile);
+	if (tile == FLOOR || tile == WALL || tile == NORTH_SP || tile == SOUTH_SP \
+	|| tile == EAST_SP || tile == WEST_SP || tile == SPACE)
+		return (1);
+	return (0);
+}
 
 void	validate_c(t_vars *vars, char *line, int fd)
 {
@@ -20,7 +38,7 @@ void	validate_c(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd ceiling identifier", \
-		"Error\nCEILING: cub_interpreter");
+		"CEILING: cub_interpreter");
 	}
 }
 
@@ -32,7 +50,7 @@ void	validate_f(t_vars *vars, char *line, int fd)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Found 2nd floor identifier", \
-		"Error\nFLOOR: cub_interpreter");
+		"FLOOR: cub_interpreter");
 	}
 }
 
@@ -41,19 +59,22 @@ void	validate_textures(t_vars *vars)
 {
 	if (!vars->map.no.img)
 		fatal_error(vars, "Missing north texture", \
-		"Error\ncub_interpreter");
-	if (!vars->map.so.img)
+		"cub_interpreter");
+	else if (!vars->map.so.img)
 		fatal_error(vars, "Missing south texture", \
-		"Error\ncub_interpreter");
-
-	if (!vars->map.we.img)
+		"cub_interpreter");
+	else if (!vars->map.we.img)
 		fatal_error(vars, "Missing west texture", \
-		"Error\ncub_interpreter");
-
-	if (!vars->map.ea.img)
+		"cub_interpreter");
+	else if (!vars->map.ea.img)
 		fatal_error(vars, "Missing east texture", \
-		"Error\ncub_interpreter");
-
+		"cub_interpreter");
+	else if (!vars->map.floor[3])
+		fatal_error(vars, "Missing floor color", \
+		"cub_interpreter");
+	else if (!vars->map.ceiling[3])
+		fatal_error(vars, "Missing ceiling color", \
+		"cub_interpreter");
 }
 
 
