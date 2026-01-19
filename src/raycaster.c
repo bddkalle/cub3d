@@ -47,7 +47,7 @@ void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, flo
 	{
 		wall_slice->wall_orient = SOUTH;
 		wall_slice->txt = &vars->map.so;
-		wall_slice->offset = (int)py % BLOCK;
+		wall_slice->offset = (int)px % BLOCK;
 	}
 }
 
