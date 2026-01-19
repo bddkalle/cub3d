@@ -31,19 +31,19 @@ void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, flo
 		wall_slice->txt = &vars->map.we;
 		wall_slice->offset = (int)py % BLOCK;
 	}
-	if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0)
+	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0)
 	{
 		wall_slice->wall_orient = EAST;
 		wall_slice->txt = &vars->map.ea;
 		wall_slice->offset = (int)py % BLOCK;
 	}
-	if ((int)py % BLOCK == 0 && sin(beta) > 0)
+	else if ((int)py % BLOCK == 0 && sin(beta) > 0)
 	{
 		wall_slice->wall_orient = NORTH;
 		wall_slice->txt = &vars->map.no;
 		wall_slice->offset = (int)px % BLOCK;
 	}
-	if ((int)py % BLOCK == BLOCK - 1 && sin(beta) < 0)
+	else if ((int)py % BLOCK == BLOCK - 1 && sin(beta) < 0)
 	{
 		wall_slice->wall_orient = SOUTH;
 		wall_slice->txt = &vars->map.so;
@@ -70,7 +70,7 @@ bool	touch(t_vars *vars, float px, float py)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (vars->map.grid[y][x] == '0')
+	if (vars->map.grid[y][x] == '0') // was ist mit N,W,E,S etc.???
 		return (false);
 	else
 		return (true);
