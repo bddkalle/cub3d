@@ -1,37 +1,16 @@
 #include "../include/cub3D.h"
 
-/*
-t_wall_orient	wall_orient(t_vars *vars, float px, float py)
-{
-	if ((int)py % BLOCK == 0 && (int)px % BLOCK != 0)
-	{
-		if (cos(vars->player.alpha) < 0)
-			return (NORTH);
-		if (cos(vars->player.alpha) > 0)
-			return (SOUTH);
-	}
-	else if ((int)px % BLOCK == 0 && (int)px % BLOCK != 0)
-	{
-		if (sin(vars->player.alpha) > 0)
-			return (WEST);
-		if (sin(vars->player.alpha) < 0)
-			return (EAST);
-	}
-	return (UNDET);
-}
-*/
-
-/* wall orientation is determined by rounding down ray coordinates when grid=1 is touched.
-For edge cases it is necessary to check wether angle is left/right or up/down */
+/* wall orientation is determined by rounding down ray coordinates and check whether grid=1 is touched.
+For edge cases it is necessary to check wether angle is left/right or up/down & check if neighboring grid is wall*/
 void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, float beta)
 {
-	if ((int)px % BLOCK == 0 && cos(beta) > 0)
+	if ((int)px % BLOCK == 0 && cos(beta) > 0 && !touch(vars, px - 1, py))
 	{
 		wall_slice->wall_orient = WEST;
 		wall_slice->txt = &vars->map.we;
 		wall_slice->offset = (int)py % BLOCK;
 	}
-	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0)
+	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0 && !touch(vars, px + 1, py))
 	{
 		wall_slice->wall_orient = EAST;
 		wall_slice->txt = &vars->map.ea;

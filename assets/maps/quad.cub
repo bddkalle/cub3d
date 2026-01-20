@@ -1,0 +1,14 @@
+R 1600 800
+NO ./assets/textures/wall_1.xpm
+SO ./assets/textures/wall_2.xpm
+WE ./assets/textures/wall_3.xpm
+EA ./assets/textures/wall_4.xpm
+S ./assets/textures/sprite_1.xpm
+F 184,113,39
+C 51,198,227
+
+1111111
+1000001
+100N001
+1000001
+1111111
