@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:24:35 by vboxuser          #+#    #+#             */
-/*   Updated: 2026/01/20 11:50:26 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:17:29 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ t_point	screen_mapping(t_vars *vars, float x, float y)
 	float	a;
 	float	b;
 	float	c;
-	float	d;
 	t_point	mapped_p;
 
-	a = vars->map.pixel_per_grid * (1.0 - 1.0 / vars->map.g_w);
+	a = (float)vars->map.pixel_per_grid / BLOCK;
 	b = WIDTH - (vars->map.g_w * vars->map.pixel_per_grid);
+	c = HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid);
 	mapped_p.px_x = a * x + b;
-	c = vars->map.pixel_per_grid * (1.0 - 1.0 / vars->map.g_h);
-	d = HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid);
-	mapped_p.px_y = c * y + d;
+	mapped_p.px_y = a * y + c;
 	return (mapped_p);
 }
 
@@ -45,31 +43,12 @@ void	draw_player(t_vars *vars)
 	t_point	mapped_player;
 
 	mapped_player = screen_mapping(vars, vars->player.x, vars->player.y);
-	printf("player x: %f, y: %f, mapped_x: %lu, mapped_y: %lu\n", vars->player.x, vars->player.y, mapped_player.px_x, mapped_player.px_y);
 	draw_square(vars,\
 		mapped_player.px_x,\
 		mapped_player.px_y,\
-		8,
+		vars->map.pixel_per_grid / 4,
 		0x00FF00);
 }
-/*
-void	draw_player(t_vars *vars)
-{
-	t_point	p;
-	int		px_res;
-	int		py_res;
-
-	p.px_x = vars->player.x / BLOCK;
-	p.px_y = vars->player.y / BLOCK;
-	px_res = (int)vars->player.x % BLOCK * (vars->map.pixel_per_grid / BLOCK);
-	py_res = (int)vars->player.x % BLOCK * (vars->map.pixel_per_grid / BLOCK);
-
-	draw_square(vars,\
-		WIDTH - (vars->map.g_w - p.px_x) * vars->map.pixel_per_grid + px_res,\
-		HEIGHT - (vars->map.g_h - p.px_y) * vars->map.pixel_per_grid + py_res,\
-		vars->map.pixel_per_grid / 16,\
-		0x00FF00);
-}*/
 
 void	draw_map(t_vars *vars)
 {
