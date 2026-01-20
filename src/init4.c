@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 11:04:39 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 13:27:14 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:40:35 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	set_img_addr(t_vars *vars, char *line, int fd, t_txt *txt)
 		free_null((void **)&line);
 		get_next_line(-1);
 		fatal_error(vars, "Could not set image address for texture", \
-	"Error\nmlx_get_data_addr");
+	"mlx_get_data_addr");
 	}
 }

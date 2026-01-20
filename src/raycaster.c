@@ -70,10 +70,10 @@ bool	touch(t_vars *vars, float px, float py)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (vars->map.grid[y][x] == '0') // was ist mit N,W,E,S etc.???
-		return (false);
-	else
+	if (vars->map.grid[y][x] == '1') // was ist mit N,W,E,S etc.???
 		return (true);
+	else
+		return (false);
 }
 
 void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map)
