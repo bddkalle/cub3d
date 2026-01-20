@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/17 23:49:10 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:34:15 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,47 +68,3 @@ void	validate_fileformat(char *s)
 	if (s[l] != 'b' && s[l - 1] != 'u' && s[l - 2] != 'c' && s[l - 3] != '.')
 		input_error("Invalid fileformat - .cub file expected");
 }
-
-/* int	map_error(char *s)
-{
-	ft_printf("Error\n");
-	ft_printf("%s\n", s);
-	return (1);
-}
-
-void	count_chars(t_vars *vars, t_point grid_pos)
-{
-	if (vars->map.grid[grid_pos.px_y][grid_pos.px_x] == EXIT)
-		vars->exit_found++;
-	else if (vars->map.grid[grid_pos.px_y][grid_pos.px_x] == COLLECT)
-		vars->collect_found++;
-	else if (vars->map.grid[grid_pos.px_y][grid_pos.px_x] == START)
-	{
-		vars->start_found++;
-		vars->player.pos = grid_pos;
-	}
-}
-
-void	validate_map(t_vars *vars, t_point grid_pos)
-{
-	if (wall_check(vars))
-		exit (map_error_fillgrids("No surrounding walls", \
-			NULL, vars, grid_pos));
-	if (vars->start_found != 1)
-		exit (map_error_fillgrids("Invalid start count", \
-			NULL, vars, grid_pos));
-	valid_path(vars, vars->player.pos);
-	if (vars->exit_found != 1)
-		exit (map_error_fillgrids("Invalid exit count", \
-			NULL, vars, grid_pos));
-	else if (vars->map.exit_accessible == 0)
-		exit (map_error_fillgrids("Exit not accessible", \
-			NULL, vars, grid_pos));
-	if (vars->collect_found == 0)
-		exit (map_error_fillgrids("No collectible found", \
-			NULL, vars, grid_pos));
-	else if (vars->map.collect_accessible != vars->collect_found)
-		exit (map_error_fillgrids("Not all collectibles accessible", \
-			NULL, vars, grid_pos));
-}
- */

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
+/*   Updated: 2026/01/20 12:30:15 by fschnorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
 // linear mapping from screen renderer to texture, solve linear equation system using 1. wall_bottom -> (px_h - 1) 2. wall_top -> 0
@@ -5,7 +17,7 @@ int	y_texture_mapping(t_touch *wall_slice, int y)
 {
 	float	a;
 	float	b;
-	int	txt_y;
+	int		txt_y;
 
 	a = ((float)wall_slice->txt->px_h - 1) / (wall_slice->wall_bottom - wall_slice->wall_top);
 	b = a * wall_slice->wall_top * (-1);
@@ -34,6 +46,7 @@ void	wall_detector_helper(t_vars *vars)
 {
 	float	ray_x;
 	float	ray_y;
+	t_touch	wall_slice;
 
 	ray_x = vars->player.x;
 	ray_y = vars->player.y;
@@ -42,7 +55,6 @@ void	wall_detector_helper(t_vars *vars)
 		ray_x += cos(vars->player.alpha);
 		ray_y += sin(vars->player.alpha);
 	}
-	t_touch	wall_slice;
 	wall_info(vars, &wall_slice, ray_x, ray_y, vars->player.alpha);
 	printf("texture_h: %d, texture_w: %d\n", wall_slice.txt->px_h, wall_slice.txt->px_w);
 	printf("ray_x: %f | (int)rayx: %d | ray_x %% 64: %d\n", ray_x, (int)ray_x, (int)ray_x % 64);

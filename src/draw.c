@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 10:45:01 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:12:52 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ int	draw_img(t_vars *vars)
 	//wall_detector_helper(vars);
 	return (0);
 }
-

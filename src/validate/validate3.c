@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 23:30:11 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:03:29 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	wall_check(t_vars *vars)
 	t_point	start;
 
 	start = find_start_set_player(vars);
-	// printf("Startpoint: x = %ld, y = %ld\n", start.px_x, start.px_y);
 	if (check_open_wall(vars, start.px_y, start.px_x))
 		fatal_error(vars, "Map is not closed", "wall_check");
 	return (0);

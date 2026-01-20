@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:42:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 13:00:33 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:18:46 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	run_game(t_vars *vars)
 	mlx_loop(vars->mlx);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
@@ -37,6 +36,6 @@ int	main(int argc, char **argv)
 	else if (argc == 1)
 		input_error("Specify map file");
 	else
-		input_error("Too many arguments. USAGE: ./cub3D {scene_description}.cub");
+		input_error("Too many arguments. USAGE: ./cub3D [filename].cub");
 	return (0);
 }

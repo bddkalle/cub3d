@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:24:03 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 10:58:34 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:46:55 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,4 @@ void	parse_map(t_vars *vars, char *line, int fd, char *file)
 	extract_map(vars, line, fd, file);
 	print_grid(vars);
 	validate_map(vars);
-	printf("height: %ld\n", vars->map.g_h);
-	printf("width: %ld\n", vars->map.g_w);
-	vars->map.grid3 = malloc(sizeof(char *) * 11);
-	if (!vars->map.grid3)
-		fatal_error(vars, "Could not allocate grid", "malloc");
-	vars->map.grid3[0] = "111111111111111";
-	vars->map.grid3[1] = "100000000000001";
-	vars->map.grid3[2] = "100000000000001";
-	vars->map.grid3[3] = "100000000000001";
-	vars->map.grid3[4] = "100001000000001";
-	vars->map.grid3[5] = "100000000000001";
-	vars->map.grid3[6] = "100000000000001";
-	vars->map.grid3[7] = "100000000011001";
-	vars->map.grid3[8] = "100000000000001";
-	vars->map.grid3[9] = "111111111111111";
-	vars->map.grid3[10] = NULL;
 }

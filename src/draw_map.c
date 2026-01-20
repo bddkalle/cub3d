@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:24:35 by vboxuser          #+#    #+#             */
-/*   Updated: 2026/01/20 10:36:06 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:07:42 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	draw_map(t_vars *vars)
 {
 	t_size	y;
 	t_size	x;
-	int	pixel_per_grid;
+	int		pixel_per_grid;
 
 	pixel_per_grid = HEIGHT / (4 * vars->map.g_h);
 	y = 0;
@@ -26,9 +26,9 @@ void	draw_map(t_vars *vars)
 		while (x < vars->map.g_w)
 		{
 			if (vars->map.grid[y][x] == '1')
-				draw_square(vars,\
-					WIDTH - (vars->map.g_w - x) * pixel_per_grid,\
-					HEIGHT - (vars->map.g_h - y) * pixel_per_grid,\
+				draw_square(vars, \
+					WIDTH - (vars->map.g_w - x) * pixel_per_grid, \
+					HEIGHT - (vars->map.g_h - y) * pixel_per_grid, \
 					pixel_per_grid, 0x0000FF);
 			x++;
 		}
