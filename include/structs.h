@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 09:40:09 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 10:50:00 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map
 	int		floor[4];
 	int		ceiling[4];
 	int		start_found;
+	int		pixel_per_grid;
 }	t_map;
 
 typedef struct s_point
