@@ -70,7 +70,7 @@ bool	touch(t_vars *vars, float px, float py)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (vars->map.grid[y][x] == '1') // was ist mit N,W,E,S etc.???
+	if (vars->map.grid[y][x] == '1')
 		return (true);
 	else
 		return (false);
