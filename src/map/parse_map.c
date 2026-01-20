@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:24:03 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 14:46:55 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:18:56 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	extract_map(t_vars *vars, char *line, int fd, char *file)
 void	parse_map(t_vars *vars, char *line, int fd, char *file)
 {
 	extract_map(vars, line, fd, file);
-	print_grid(vars);
+	// print_grid(vars);
 	validate_map(vars);
 }
