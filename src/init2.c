@@ -63,7 +63,7 @@ void	load_so_textures(t_vars *vars, char *line, int i, int fd)
 	"SO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
-	set_img_addr(vars, line, fd, vars->map.so);
+	set_img_addr(vars, line, fd, &vars->map.so);
 }
 
 void	load_we_textures(t_vars *vars, char *line, int i, int fd)
@@ -92,7 +92,7 @@ void	load_we_textures(t_vars *vars, char *line, int i, int fd)
 	"WE: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
-	set_img_addr(vars, line, fd, vars->map.we);
+	set_img_addr(vars, line, fd, &vars->map.we);
 }
 
 void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
@@ -121,7 +121,7 @@ void	load_ea_textures(t_vars *vars, char *line, int i, int fd)
 	"EA: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
-	set_img_addr(vars, line, fd, vars->map.ea);
+	set_img_addr(vars, line, fd, &vars->map.ea);
 }
 
 void	load_no_textures(t_vars *vars, char *line, int i, int fd)
@@ -150,5 +150,5 @@ void	load_no_textures(t_vars *vars, char *line, int i, int fd)
 	"NO: mlx_xpm_file_to_image");
 	}
 	free_null((void **)&filename);
-	set_img_addr(vars, line, fd, vars->map.no);
+	set_img_addr(vars, line, fd, &vars->map.no);
 }
