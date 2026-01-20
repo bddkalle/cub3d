@@ -3,21 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/12/28 19:55:38 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/19 23:55:11 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+void	set_player(t_vars *vars, t_point p)
+{
+	if (vars->map.grid[p.px_y][p.px_x] == 'N')
+		vars->player.alpha = -PI / 2.0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'E')
+		vars->player.alpha = 0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'S')
+		vars->player.alpha = PI / 2.0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'W')
+		vars->player.alpha = PI;
+	vars->player.start = p;
+	// vars->player.x = p.px_x * BLOCK + BLOCK / 2;				Versuch 1
+	// vars->player.y = p.px_y * BLOCK + BLOCK / 2;
+	// vars->player.x = WIDTH / BLOCK * p.px_x + BLOCK / 2;		Versuch 2		beides kompiliert nicht, daher habe ich vorerst die pauschale Initialisierung gelassen
+	// vars->player.y = HEIGHT / BLOCK * p.px_y + BLOCK / 2;
+	vars->player.x = WIDTH / 2;
+	vars->player.y = HEIGHT / 2;
+	printf("Startpoint: x = %ld, y = %ld, alpha = %f\n", \
+	vars->player.start.px_x, vars->player.start.px_y, vars->player.alpha);
+}
+
 void	init_player(t_player *player)
 {
 	*player = (t_player){};
-	player->x = WIDTH / 2.0;
-	player->y = HEIGHT / 2.0;
-	player->alpha = PI / 2.0;
 }
 
 void	move_player(t_vars *vars)

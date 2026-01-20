@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 09:52:52 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:39:51 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define RIGHT 65363
 
 #  define PI 3.14159265359
+#  define INT_MAX 2147483647
 
 # include <stdbool.h>
 # include <stdio.h>
@@ -58,6 +59,7 @@ void	parse_color_error(t_vars *vars, char *line, int fd, char **color_arr);
 //Free
 void	free_null(void **ptr);
 void	free_all(t_vars *vars);
+void	free_incomplete_grid(t_vars *vars, t_point grid_pos);
 
 //MLX
 int		close_win(t_vars *vars);
@@ -86,10 +88,15 @@ void	wall_info(t_vars *vars, t_touch *wall_slice, float px, float py, float beta
 //Player
 void	init_player(t_player *player);
 void	move_player(t_vars *vars);
+void	set_player(t_vars *vars, t_point p);
 
 //Map
-void	parse_map(t_vars *vars, char *line, int fd);
+void	parse_map(t_vars *vars, char *line, int fd, char *file);
 int		map_detected(t_vars *vars, char *s);
+int		init_grid(t_vars *vars, char *map_begin, char **line2, char *file);
+void	fill_grid(t_vars *vars, int fd2, char *map_begin, t_point grid_pos);
+void	alloc_line(t_vars *vars, t_point p, char *line, int fd2);
+void	fill_grid_row(t_vars *vars, t_point grid_pos, char *line, int fd2);
 
 //Validate
 void	validate_fileformat(char *s);
@@ -100,5 +107,11 @@ void	validate_ea(t_vars *vars, char *line, int fd);
 void	validate_textures(t_vars *vars);
 void	validate_f(t_vars *vars, char *line, int fd);
 void	validate_c(t_vars *vars, char *line, int fd);
+int		valid_map_chars(t_tile_type tile);
+void	validate_map(t_vars *vars);
+int		wall_check(t_vars *vars);
+
+//Debug
+void	print_grid(t_vars *vars);
 
 #endif

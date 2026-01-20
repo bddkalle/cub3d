@@ -6,11 +6,63 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:28:22 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/15 22:19:58 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/19 10:38:19 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	fill_grid(t_vars *vars, int fd2, char *line, t_point grid_pos)
+{
+	while (line)
+	{
+		alloc_line(vars, grid_pos, line, fd2);
+		while (grid_pos.px_x < vars->map.g_w)
+		{
+			fill_grid_row(vars, grid_pos, line, fd2);
+			grid_pos.px_x++;
+		}
+		grid_pos.px_x = 0;
+		free(line);
+		line = NULL;
+		line = get_next_line(fd2);
+		if (line)
+			grid_pos.px_y++;
+	}
+	free(line);
+	line = NULL;
+	close (fd2);
+}
+
+int	prepare_file(t_vars *vars, char *map_begin, char **line2, char *file)
+{
+	int		fd2;
+
+	fd2 = open(file, O_RDONLY);
+	if (fd2 < 0)
+	{
+		free_null((void **)&map_begin);
+		free_null((void **)&vars->map.grid);
+		free_null((void **)&vars->map.tile);
+		fatal_error(vars, "Could not open .cub file", "open");
+	}
+	*line2 = get_next_line(fd2);
+	if (!*line2)
+	{
+		close(fd2);
+		free_null((void **)&map_begin);
+		free_null((void **)&vars->map.grid);
+		free_null((void **)&vars->map.tile);
+		fatal_error(vars, "Could not read from .cub file", "get_next_line");
+	}
+	while (ft_strcmp(*line2, map_begin))
+	{
+		free_null((void **)line2);
+		*line2 = get_next_line(fd2);
+	}
+	return (fd2);
+}
+
 
 int	is_map_char(char c)
 {
@@ -21,7 +73,7 @@ int	is_map_char(char c)
 }
 
 int	map_detected(t_vars *vars, char *s)
-{																		// check: alle idents vorhanden
+{																		// check: alle idents vorhanden?
 	if (vars->map.no.img != NULL && vars->map.so.img != NULL \
 	&& vars->map.we.img != NULL && vars->map.ea.img != NULL \
 	&& vars->map.floor[3] == 1 && vars->map.ceiling[3] == 1)
@@ -36,62 +88,24 @@ int	map_detected(t_vars *vars, char *s)
 	return (0);
 }
 
-/* void	init_grid_fill(t_vars *vars, t_point *grid_pos)
+int	init_grid(t_vars *vars, char *map_begin, char **line2, char *file)
 {
-	vars->map.fd = open(vars->map.file_path, O_RDONLY);
-	if (vars->map.fd == -1)
-		exit (map_error("Could not open map file"));
+	int		fd2;
+
 	vars->map.grid = malloc(vars->map.g_h * sizeof(char *));
 	if (!vars->map.grid)
-		exit (map_error("Could not allocate memory"));
+	{
+		free_null((void **)&map_begin);
+		fatal_error(vars, "Could not allocate memory", "init_grid");
+	}
 	vars->map.tile = malloc(vars->map.g_h * sizeof(t_tile *));
 	if (!vars->map.tile)
 	{
-		free(vars->map.grid);
-		vars->map.grid = NULL;
-		close(vars->map.fd);
-		exit (map_error("Could not allocate memory"));
+		free_null((void **)&map_begin);
+		free_null((void **)&vars->map.grid);
+		fatal_error(vars, "Could not allocate memory", "init_grid");
 	}
-	grid_pos->px_x = 0;
-	grid_pos->px_y = 0;
+	fd2 = prepare_file(vars, map_begin, line2, file);
+	free_null((void **)&map_begin);
+	return (fd2);
 }
-
-void	alloc_line(t_vars *vars, t_point p, char *line)
-{
-	vars->map.grid[p.px_y] = malloc((vars->map.g_w) * sizeof(char));
-	if (!vars->map.grid[p.px_y])
-	{
-		free(vars->map.grid);
-		vars->map.grid = NULL;
-		free(vars->map.tile);
-		vars->map.tile = NULL;
-		exit (map_error_freestash("Could not allocate memory", line, \
-		vars->map.fd, &vars->gnl));
-	}
-	vars->map.tile[p.px_y] = malloc((vars->map.g_w) * sizeof(t_tile));
-	if (!vars->map.tile[p.px_y])
-	{
-		free(vars->map.grid[p.px_y]);
-		vars->map.grid[p.px_y] = NULL;
-		free(vars->map.grid);
-		vars->map.grid = NULL;
-		free(vars->map.tile);
-		vars->map.tile = NULL;
-		exit (map_error_freestash("Could not allocate memory", line, \
-		vars->map.fd, &vars->gnl));
-	}
-}
-
-void	fill_grids(t_vars *vars, t_point grid_pos, char *line)
-{
-	vars->map.grid[grid_pos.px_y][grid_pos.px_x] = line[grid_pos.px_x];
-	vars->map.tile[grid_pos.px_y][grid_pos.px_x].type = line[grid_pos.px_x];
-	vars->map.tile[grid_pos.px_y][grid_pos.px_x].visited = 0;
-	if (!valid_map_chars(vars->map.tile[grid_pos.px_y][grid_pos.px_x].type))
-	{
-		exit (map_error_fillgrids("Invalid character used in map file", \
-			line, vars, grid_pos));
-	}
-	count_chars(vars, grid_pos);
-}
- */
