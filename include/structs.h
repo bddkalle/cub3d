@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 11:21:57 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:07:55 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 	int		floor[4];
 	int		ceiling[4];
 	int		start_found;
+	int		pixel_per_grid;
 }	t_map;
 
 typedef struct s_point

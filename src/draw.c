@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 12:12:52 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:11:36 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	draw_img(t_vars *vars)
 	draw_fov(vars, map);
 	if (map)
 		draw_map(vars);
+	if (!vars->mlx || !vars->win || !vars->img)
+		fatal_error(vars, "mlx pointer corrupted", "draw_img");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	//wall_detector_helper(vars);
 	return (0);
 }

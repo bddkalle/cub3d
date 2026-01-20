@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 11:51:27 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:07:43 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	put_pixel(t_vars *vars, int x, int y, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
 void	draw_map(t_vars *vars);
-int		create_rgb(int	rgb[3]);
+void	draw_ray(t_vars *vars, float ray_x, float ray_y);
+int		create_rgb(int rgb[3]);
 
 //Raycaster
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);

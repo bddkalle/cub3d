@@ -12,38 +12,17 @@
 
 #include "../include/cub3D.h"
 
-/*
-t_wall_orient	wall_orient(t_vars *vars, float px, float py)
-{
-	if ((int)py % BLOCK == 0 && (int)px % BLOCK != 0)
-	{
-		if (cos(vars->player.alpha) < 0)
-			return (NORTH);
-		if (cos(vars->player.alpha) > 0)
-			return (SOUTH);
-	}
-	else if ((int)px % BLOCK == 0 && (int)px % BLOCK != 0)
-	{
-		if (sin(vars->player.alpha) > 0)
-			return (WEST);
-		if (sin(vars->player.alpha) < 0)
-			return (EAST);
-	}
-	return (UNDET);
-}
-*/
-
-/* wall orientation is determined by rounding down ray coordinates when grid=1 is touched.
-For edge cases it is necessary to check wether angle is left/right or up/down */
+/* wall orientation is determined by rounding down ray coordinates and check whether grid=1 is touched.
+For edge cases it is necessary to check wether angle is left/right or up/down & check if neighboring grid is wall*/
 void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, float beta)
 {
-	if ((int)px % BLOCK == 0 && cos(beta) > 0)
+	if ((int)px % BLOCK == 0 && cos(beta) > 0 && !touch(vars, px - 1, py))
 	{
 		wall_slice->wall_orient = WEST;
 		wall_slice->txt = &vars->map.we;
 		wall_slice->offset = (int)py % BLOCK;
 	}
-	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0)
+	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0 && !touch(vars, px + 1, py))
 	{
 		wall_slice->wall_orient = EAST;
 		wall_slice->txt = &vars->map.ea;
@@ -82,7 +61,7 @@ bool	touch(t_vars *vars, float px, float py)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (vars->map.grid[y][x] == '1') // was ist mit N,W,E,S etc.???
+	if (vars->map.grid[y][x] == '1')
 		return (true);
 	else
 		return (false);
@@ -96,7 +75,9 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw
 	y = HEIGHT - 1;
 	while (y >= 0)
 	{
-		if (draw_map && ray_id >= WIDTH / 4 * 3 && y >= HEIGHT / 4 * 3)
+		if (draw_map\
+			&& (t_size)ray_id >= WIDTH - (vars->map.g_w * vars->map.pixel_per_grid)\
+			&& (t_size)y >= HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid))
 			y--;
 		else if (y > wall_slice->wall_bottom)
 			put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
@@ -121,11 +102,10 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 	while (!touch(vars, ray_x, ray_y))
 	{
 		if (draw_map)
-			put_pixel(vars, (int)ray_x / 4 + WIDTH / 4 * 3, (int)ray_y / 4 + HEIGHT / 4 * 3, 0xFF0000);
+			draw_ray(vars, ray_x, ray_y);
 		ray_x += cos(beta);
 		ray_y += sin(beta);
 	}
 	wall_info(vars, &wall_slice, ray_x, ray_y, beta);
-	//draw_vertical_line(vars, ray_x, ray_y, ray_id, beta);
 	draw_vertical_line(vars, ray_id, &wall_slice, draw_map);
 }
