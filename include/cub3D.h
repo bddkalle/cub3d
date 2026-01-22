@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 10:37:29 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/22 13:40:41 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		create_argb(int	rgb[3]);
 
 //Raycaster
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
-bool	touch(t_vars *vars, float px, float py);
+t_wall	touch(t_vars *vars, float px, float py);
 int		get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y);
 void	wall_detector_helper(t_vars *vars);
 

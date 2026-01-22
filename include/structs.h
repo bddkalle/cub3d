@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 20:07:55 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 13:43:56 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,16 @@ typedef struct s_point
 	t_size	px_y;
 }	t_point;
 
-typedef enum s_wall
+typedef enum e_wall
 {
-	FALSE,
-	NORTH,
-	EAST,
-	SOUTH,
-	WEST,
+	UNDET,
+	NOTOUCH,
+	TOUCH,
 }	t_wall;
 
 typedef struct s_touch
 {
-	t_wall	wall_orient;
+	t_wall	touch;
 	t_txt	*txt;
 	int		offset;
 	float	distance;

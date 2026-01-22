@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 10:46:56 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:09:13 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ bool	wall_collision(t_vars *vars, float x_inc, float y_inc)
 {
 	float	x;
 	float	y;
+	t_wall	collision;
 
 	x = vars->player.x + x_inc;
 	y = vars->player.y + y_inc;
-	if (touch(vars, x, y))
+	collision = touch(vars, x, y);
+	if (collision == TOUCH)
 		return (true);
 	return (false);
 }
