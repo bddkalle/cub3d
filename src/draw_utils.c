@@ -1,8 +1,8 @@
 #include "../include/cub3D.h"
 
-int		create_rgb(int	rgb[3])
+int		create_argb(int	rgb[3])
 {
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	return (0xFF << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
 void	put_pixel(t_vars *vars, int x, int y, int color)

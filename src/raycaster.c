@@ -10,7 +10,8 @@ void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, flo
 		wall_slice->txt = &vars->map.we;
 		wall_slice->offset = (int)py % BLOCK;
 	}
-	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0 && !touch(vars, px + 1, py))
+	else if ((int)px % BLOCK == BLOCK - 1 && cos(beta) < 0 &&\
+		!touch(vars, px + 1, py))
 	{
 		wall_slice->wall_orient = EAST;
 		wall_slice->txt = &vars->map.ea;
@@ -68,14 +69,14 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw
 			&& (t_size)y >= HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid))
 			y--;
 		else if (y > wall_slice->wall_bottom)
-			put_pixel(vars, ray_id, y--, create_rgb(vars->map.floor));
+			put_pixel(vars, ray_id, y--, create_argb(vars->map.floor));
 		else if (y > wall_slice->wall_top)
 		{
 			color = get_color_from_txt(vars, wall_slice, y);
 			put_pixel(vars, ray_id, y--, color);
 		}
 		else
-			put_pixel(vars, ray_id, y--, create_rgb(vars->map.ceiling));
+			put_pixel(vars, ray_id, y--, create_argb(vars->map.ceiling));
 	}
 }
 
