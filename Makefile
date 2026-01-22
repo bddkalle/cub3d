@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/20 14:51:46 by fschnorr         ###   ########.fr        #
+#    Updated: 2026/01/22 16:57:43 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	$(addsuffix .c,							\
 							main				\
 							player				\
 							raycaster			\
+							raycaster2			\
 							texture				\
 							projection			\
 		))										\

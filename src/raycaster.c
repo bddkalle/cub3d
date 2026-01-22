@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 14:54:43 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:57:18 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,30 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw
 
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 {
+	t_touch	wall_slice_hor;
+	t_touch	wall_slice_ver;
+
+	(void)draw_map;
+	touch_horizontal(vars, &wall_slice_hor, beta, ray_id);
+	touch_vertical(vars, &wall_slice_ver, beta, ray_id);
+	//printf("hor dist: %f, vert_dist: %f\n", wall_slice_hor.distance, wall_slice_ver.distance);
+	if (wall_slice_hor.distance < 0 || wall_slice_ver.distance < wall_slice_hor.distance)
+	{
+		wall_info2(vars, &wall_slice_ver, beta);
+		//printf("Player (%f, %f), TP Vertical (%f, %f)\n", vars->player.x, vars->player.y, wall_slice_ver.touchpoint.x, wall_slice_ver.touchpoint.y);
+		draw_vertical_line(vars, ray_id, &wall_slice_ver, draw_map);
+	}
+	else if (wall_slice_ver.distance < 0 || wall_slice_ver.distance > wall_slice_hor.distance)
+	{
+		wall_info2(vars, &wall_slice_hor, beta);
+		//printf("Player (%f, %f), TP Horizontal (%f, %f)\n", vars->player.x, vars->player.y, wall_slice_hor.touchpoint.x, wall_slice_hor.touchpoint.y);
+		draw_vertical_line(vars, ray_id, &wall_slice_hor, draw_map);
+	}
+}
+
+/*
+void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
+{
 	float	ray_x;
 	float	ray_y;
 	float	cos_beta;
@@ -122,4 +146,4 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 	}
 	wall_info(vars, &wall_slice, ray_x, ray_y, beta);
 	draw_vertical_line(vars, ray_id, &wall_slice, draw_map);
-}
+}*/
