@@ -93,34 +93,36 @@ void	touch_vertical(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
 	wall_slice->distance = distance(tp->x - vars->player.x, tp->y - vars->player.y);
 }
 
-void	wall_orientation2(t_vars *vars, t_touch *wall_slice)
+void	wall_orientation2(t_vars *vars, t_touch *wall_slice, float beta)
 {
-	if (wall_slice->orient == HORIZONTAL && (int)wall_slice->touchpoint.y % BLOCK == 0)
+	if (wall_slice->orient == HORIZONTAL && sin(beta) > 0)
 	{
 		wall_slice->txt = &vars->map.no;
 		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.x % BLOCK;
 	}
-	else if (wall_slice->orient == HORIZONTAL && (int)wall_slice->touchpoint.y % BLOCK == BLOCK - 1)
+	else if (wall_slice->orient == HORIZONTAL && sin(beta) < 0)
 	{
 		wall_slice->txt = &vars->map.so;
 		wall_slice->offset = (int)wall_slice->touchpoint.x % BLOCK;
 	}
-	else if (wall_slice->orient == VERTICAL && (int)wall_slice->touchpoint.x % BLOCK == 0)
+	else if (wall_slice->orient == VERTICAL && cos(beta) > 0)
 	{
 		wall_slice->txt = &vars->map.we;
 		wall_slice->offset = (int)wall_slice->touchpoint.y % BLOCK;
 	}
-	else if (wall_slice->orient == VERTICAL && (int)wall_slice->touchpoint.x % BLOCK == BLOCK - 1)
+	else if (wall_slice->orient == VERTICAL && cos(beta) < 0)
 	{
 		wall_slice->txt = &vars->map.ea;
 		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.y % BLOCK;
 	}
+	else
+		wall_slice->txt = NULL;
 }
 
 void	wall_info2(t_vars *vars, t_touch *wall_slice, float beta)
 {
 	wall_slice->distance = correct_distance(vars, wall_slice->distance, beta);
-	wall_orientation2(vars, wall_slice);
+	wall_orientation2(vars, wall_slice, beta);
 	wall_projection(wall_slice);
 }
 

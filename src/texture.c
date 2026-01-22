@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 20:13:30 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:22:05 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y)
 	int		txt_y;
 
 	(void)vars;
+	if (wall_slice->txt == NULL)
+		return (0);
 	txt_y = y_texture_mapping(wall_slice, y);
 	addr = wall_slice->txt->addr;
 	index = txt_y * wall_slice->txt->size_line + wall_slice->offset * (wall_slice->txt->bits_per_pixel / 8);
