@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 20:12:26 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 10:46:56 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ void	set_player(t_vars *vars, t_point p)
 	vars->player.start = p;
 	vars->player.x = (float)p.px_x * BLOCK + BLOCK / 2.0;
 	vars->player.y = (float)p.px_y * BLOCK + BLOCK / 2.0;
-}
-
-void	init_player(t_player *player)
-{
-	*player = (t_player){};
 }
 
 void	rotate_player(t_vars *vars, float angle_speed)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 12:16:08 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 10:46:54 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ void	cub_interpreter(t_vars *vars, char *file)
 	}
 	parse_map(vars, line, fd, file);
 	close(fd);
+}
+
+void	init_player(t_player *player)
+{
+	*player = (t_player){};
 }
 
 void	init_vars(t_vars *vars)

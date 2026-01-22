@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 20:11:36 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:13:04 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	draw_img(t_vars *vars)
 	map = true;
 	move_player(vars);
 	clear_image(vars);
-	draw_fov(vars, map);
 	if (map)
 		draw_map(vars);
+	draw_fov(vars, map);
 	if (!vars->mlx || !vars->win || !vars->img)
 		fatal_error(vars, "mlx pointer corrupted", "draw_img");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

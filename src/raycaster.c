@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 12:27:22 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:46:19 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	wall_orientation(t_vars *vars, t_touch *wall_slice, float px, float py, flo
 	{
 		wall_slice->wall_orient = EAST;
 		wall_slice->txt = &vars->map.ea;
-		wall_slice->offset = (int)py % BLOCK;
+		wall_slice->offset = BLOCK - (int)py % BLOCK;
 	}
 	else if ((int)py % BLOCK == 0 && sin(beta) > 0)
 	{
 		wall_slice->wall_orient = NORTH;
 		wall_slice->txt = &vars->map.no;
-		wall_slice->offset = (int)px % BLOCK;
+		wall_slice->offset = BLOCK - (int)px % BLOCK;
 	}
 	else if ((int)py % BLOCK == BLOCK - 1 && sin(beta) < 0)
 	{
@@ -60,8 +60,8 @@ bool	touch(t_vars *vars, float px, float py)
 	int	x;
 	int	y;
 
-	x = px / BLOCK;
-	y = py / BLOCK;
+	x = (int)px / BLOCK;
+	y = (int)py / BLOCK;
 	if (vars->map.grid[y][x] == '1')
 		return (true);
 	else
@@ -96,16 +96,20 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 {
 	float	ray_x;
 	float	ray_y;
+	float	cos_beta;
+	float	sin_beta;
 	t_touch	wall_slice;
 
 	ray_x = vars->player.x;
 	ray_y = vars->player.y;
+	cos_beta = cos(beta);
+	sin_beta = sin(beta);
 	while (!touch(vars, ray_x, ray_y))
 	{
 		if (draw_map)
 			draw_ray(vars, ray_x, ray_y);
-		ray_x += cos(beta);
-		ray_y += sin(beta);
+		ray_x += cos_beta;
+		ray_y += sin_beta;
 	}
 	wall_info(vars, &wall_slice, ray_x, ray_y, beta);
 	draw_vertical_line(vars, ray_id, &wall_slice, draw_map);
