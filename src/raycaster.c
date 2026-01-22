@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 14:07:11 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:54:43 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,6 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 		ray_x += cos_beta;
 		ray_y += sin_beta;
 		wall_slice.touch = touch(vars, ray_x, ray_y);
-	}
-	if (wall_slice.touch == UNDET)
-	{
-		printf("touch undet.\n");
-		return ;
 	}
 	wall_info(vars, &wall_slice, ray_x, ray_y, beta);
 	draw_vertical_line(vars, ray_id, &wall_slice, draw_map);
