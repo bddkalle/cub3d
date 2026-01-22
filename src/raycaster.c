@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
+/*   Updated: 2026/01/20 12:27:22 by fschnorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
 /* wall orientation is determined by rounding down ray coordinates and check whether grid=1 is touched.
@@ -46,7 +58,7 @@ void	wall_info(t_vars *vars, t_touch *wall_slice, float px, float py, float beta
 bool	touch(t_vars *vars, float px, float py)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = px / BLOCK;
 	y = py / BLOCK;

@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 10:31:23 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/22 10:37:29 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	parse_color_error(t_vars *vars, char *line, int fd, char **color_arr);
 //Free
 void	free_null(void **ptr);
 void	free_all(t_vars *vars);
-void	free_incomplete_grid(t_vars *vars, t_point grid_pos);
+void	free_incomplete_gridntile(t_vars *vars, t_point grid_pos);
+void	free_incomplete_grid_al(t_vars *vars, t_point grid_pos);
 
 //MLX
 int		close_win(t_vars *vars);

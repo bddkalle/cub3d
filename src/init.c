@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 12:39:47 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:16:08 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ char	*parse_textures(t_vars *vars, char *line, int fd)
 		i = 0;
 		while (ft_isspace(line[i]))
 			i++;
-		if (ft_strncmp("NO", &line[i], 2) == 0)	//handle North texture
-			load_no_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("SO", &line[i], 2) == 0)	//handle South texture
-			load_so_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("WE", &line[i], 2) == 0)	//handle West texture
-			load_we_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("EA", &line[i], 2) == 0)	//handle East texture
-			load_ea_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle floor color
+		if (ft_strncmp("NO", &line[i], 2) == 0)
+			load_no_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("SO", &line[i], 2) == 0)
+			load_so_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("WE", &line[i], 2) == 0)
+			load_we_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("EA", &line[i], 2) == 0)
+			load_ea_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("F", &line[i], 1) == 0)
 			set_floor_color(vars, line, i, fd);
-		else if (ft_strncmp("C", &line[i], 1) == 0)	//handle ceiling color
+		else if (ft_strncmp("C", &line[i], 1) == 0)
 			set_ceiling_color(vars, line, i, fd);
 		else if (map_detected(vars, &line[i]))
 			return (line);
@@ -66,12 +66,6 @@ void	cub_interpreter(t_vars *vars, char *file)
 	close(fd);
 }
 
-/* void	init_map(t_vars *vars)
-{
-	//get_map_size()
-	parse_map(vars);
-}
- */
 void	init_vars(t_vars *vars)
 {
 	*vars = (t_vars){};
@@ -93,7 +87,7 @@ void	init_game(t_vars *vars, char *file)
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!vars->win)
 		fatal_error(vars, "Could not initiate new window", "mlx_new_window");
-	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);	//is buffer needed or directly img?
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->img)
 		fatal_error(vars, "Could not initiate buffer image", "mlx_new_image");
 	vars->img_addr = mlx_get_data_addr(vars->img, &vars->bpp, \

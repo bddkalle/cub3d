@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:28:22 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/19 10:38:19 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 11:11:58 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	prepare_file(t_vars *vars, char *map_begin, char **line2, char *file)
 	return (fd2);
 }
 
-
 int	is_map_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S' || \
@@ -73,7 +72,7 @@ int	is_map_char(char c)
 }
 
 int	map_detected(t_vars *vars, char *s)
-{																		// check: alle idents vorhanden?
+{
 	if (vars->map.no.img != NULL && vars->map.so.img != NULL \
 	&& vars->map.we.img != NULL && vars->map.ea.img != NULL \
 	&& vars->map.floor[3] == 1 && vars->map.ceiling[3] == 1)
