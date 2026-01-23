@@ -6,7 +6,7 @@
 #    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/22 16:57:43 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/01/23 09:45:50 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,7 @@ SRC =	$(addsuffix .c,							\
 							init4				\
 							main				\
 							player				\
-							raycaster			\
-							raycaster2			\
-							texture				\
+							texturing			\
 							projection			\
 		))										\
 		$(addsuffix .c,							\
@@ -45,6 +43,12 @@ SRC =	$(addsuffix .c,							\
 							validate			\
 							validate2			\
 							validate3			\
+		))										\
+		$(addsuffix .c,							\
+		$(addprefix src/raycaster/,				\
+							raycaster			\
+							touch				\
+							orientation			\
 		))
 OBJS := $(SRC:.c=.o)
 

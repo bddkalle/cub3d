@@ -6,49 +6,17 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 09:35:10 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 09:44:14 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
-t_wall	touch(t_vars *vars, float px, float py)
+void	wall_info2(t_vars *vars, t_touch *wall_slice, float beta)
 {
-	int	x;
-	int	y;
-
-	x = (int)px / BLOCK;
-	y = (int)py / BLOCK;
-	if (x < 0 || y <0 || (t_size)y >= vars->map.g_h || (t_size)x >= vars->map.g_w)
-		return (UNDET);
-	if (vars->map.grid[y][x] == '1')
-		return (TOUCH);
-	else
-		return (NOTOUCH);
-}
-
-void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map)
-{
-	int		y;
-	int		color;
-
-	y = HEIGHT - 1;
-	while (y >= 0)
-	{
-		if (draw_map\
-			&& (t_size)ray_id >= WIDTH - (vars->map.g_w * vars->map.pixel_per_grid)\
-			&& (t_size)y >= HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid))
-			y--;
-		else if (y > wall_slice->wall_bottom)
-			put_pixel(vars, ray_id, y--, create_argb(vars->map.floor));
-		else if (y > wall_slice->wall_top)
-		{
-			color = get_color_from_txt(vars, wall_slice, y);
-			put_pixel(vars, ray_id, y--, color);
-		}
-		else
-			put_pixel(vars, ray_id, y--, create_argb(vars->map.ceiling));
-	}
+	wall_slice->distance = correct_distance(vars, wall_slice->distance, beta);
+	wall_orientation(vars, wall_slice, beta);
+	wall_projection(wall_slice);
 }
 
 void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
