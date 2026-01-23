@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-float	absolute(float x)
+double	absolute(double x)
 {
 	if (x >= 0)
 		return (x);
@@ -8,7 +8,7 @@ float	absolute(float x)
 		return (-x);
 }
 
-t_wall	touch(t_vars *vars, float px, float py)
+t_wall	touch(t_vars *vars, double px, double py)
 {
 	int	x;
 	int	y;
@@ -23,7 +23,7 @@ t_wall	touch(t_vars *vars, float px, float py)
 		return (NOTOUCH);
 }
 
-void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta)
+void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 {
 	t_fpoint	*tp;
 
@@ -44,10 +44,10 @@ void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta)
+void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 {
-	float	dx;
-	float	dy;
+	double	dx;
+	double	dy;
 
 	dx = BLOCK / tan(beta);
 	dy = BLOCK;
@@ -64,7 +64,7 @@ void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta)
+void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 {
 	t_fpoint	*tp;
 
@@ -85,10 +85,10 @@ void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta)
+void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 {
-	float	dx;
-	float	dy;
+	double	dx;
+	double	dy;
 
 	dx = BLOCK;
 	dy = BLOCK * tan(beta);
@@ -105,7 +105,7 @@ void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	touch_horizontal(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
+void	touch_horizontal(t_vars *vars, t_touch *wall_slice, double beta, int ray_id)
 {
 	t_fpoint	*tp;
 
@@ -123,8 +123,8 @@ void	touch_horizontal(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
 	else
 		tp->x = vars->player.x;
 	wall_slice->touch = touch(vars, tp->x, tp->y);
-	float	dx;
-	float	dy;
+	double	dx;
+	double	dy;
 
 	dx = BLOCK / tan(beta);
 	dy = BLOCK;
@@ -149,7 +149,7 @@ void	touch_horizontal(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
 		tp->y - vars->player.y);
 }
 
-void	touch_vertical(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
+void	touch_vertical(t_vars *vars, t_touch *wall_slice, double beta, int ray_id)
 {
 	t_fpoint	*tp;
 
@@ -167,8 +167,8 @@ void	touch_vertical(t_vars *vars, t_touch *wall_slice, float beta, int ray_id)
 	else
 		tp->y = vars->player.y;
 	wall_slice->touch = touch(vars, tp->x, tp->y);
-	float	dx;
-	float	dy;
+	double	dx;
+	double	dy;
 	dx = BLOCK;
 	dy = BLOCK * tan(beta);
 	while (wall_slice->touch == NOTOUCH)

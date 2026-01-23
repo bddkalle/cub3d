@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 15:13:33 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:04:40 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,26 @@ int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
 void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map);
 void	draw_map(t_vars *vars);
-void	draw_ray(t_vars *vars, float ray_x, float ray_y);
+void	draw_ray(t_vars *vars, double ray_x, double ray_y);
 int		create_argb(int	rgb[3]);
 
 //Raycaster
-void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
-t_wall	touch(t_vars *vars, float px, float py);
-void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta);
-void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta);
-void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta);
-void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta);
-void	touch_horizontal(t_vars *vars, t_touch *wall_slice, float beta, int ray_id);
-void	touch_vertical(t_vars *vars, t_touch *wall_slice, float beta, int ray_id);
+void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map);
+t_wall	touch(t_vars *vars, double px, double py);
+void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta);
+void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta);
+void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta);
+void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta);
+void	touch_horizontal(t_vars *vars, t_touch *wall_slice, double beta, int ray_id);
+void	touch_vertical(t_vars *vars, t_touch *wall_slice, double beta, int ray_id);
 int		get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y);
-void	wall_orientation(t_vars *vars, t_touch *wall_slice, float beta);
+void	wall_orientation(t_vars *vars, t_touch *wall_slice, double beta);
 
 //Projection
-float	distance(float dx, float dy);
-float	correct_distance(t_vars *vars, float dist_d, float beta);
+double	distance(double dx, double dy);
+double	correct_distance(t_vars *vars, double dist_d, double beta);
 void	wall_projection(t_touch *touch);
-void	wall_info(t_vars *vars, t_touch *wall_slice, float beta);
+void	wall_info(t_vars *vars, t_touch *wall_slice, double beta);
 
 //Player
 void	init_player(t_player *player);

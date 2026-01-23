@@ -6,20 +6,20 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:24:35 by vboxuser          #+#    #+#             */
-/*   Updated: 2026/01/22 10:37:48 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:50 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-t_point	screen_mapping(t_vars *vars, float x, float y)
+t_point	screen_mapping(t_vars *vars, double x, double y)
 {
-	float	a;
-	float	b;
-	float	c;
+	double	a;
+	double	b;
+	double	c;
 	t_point	mapped_p;
 
-	a = (float)vars->map.pixel_per_grid / BLOCK;
+	a = (double)vars->map.pixel_per_grid / BLOCK;
 	b = WIDTH - (vars->map.g_w * vars->map.pixel_per_grid);
 	c = HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid);
 	mapped_p.px_x = a * x + b;
@@ -27,7 +27,7 @@ t_point	screen_mapping(t_vars *vars, float x, float y)
 	return (mapped_p);
 }
 
-void	draw_ray(t_vars *vars, float ray_x, float ray_y)
+void	draw_ray(t_vars *vars, double ray_x, double ray_y)
 {
 	t_point	mapped_p;
 

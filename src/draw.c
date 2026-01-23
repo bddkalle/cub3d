@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:36:29 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 10:23:26 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:41 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_fov(t_vars *vars, bool map)
 {
-	float	rad_per_pixel;
-	float	fov_min;
+	double	rad_per_pixel;
+	double	fov_min;
 	int		ray_id;
 
 	rad_per_pixel = PI / 3 / WIDTH;

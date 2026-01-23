@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 15:51:17 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:24 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 // linear mapping from screen renderer to texture, solve linear equation system using 1. wall_bottom -> (px_h - 1) 2. wall_top -> 0
 int	y_texture_mapping(t_touch *wall_slice, int y)
 {
-	float	a;
-	float	b;
+	double	a;
+	double	b;
 	int		txt_y;
 
-	a = ((float)wall_slice->txt->px_h) / (wall_slice->wall_bottom - wall_slice->wall_top);
+	a = ((double)wall_slice->txt->px_h) / (wall_slice->wall_bottom - wall_slice->wall_top);
 	b = a * wall_slice->wall_top * (-1);
 	txt_y = a * y + b;
 	return (txt_y);

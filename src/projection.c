@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:26 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 12:24:21 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:19 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-float	distance(float dx, float dy)
+double	distance(double dx, double dy)
 {
 	return (sqrt(dx * dx + dy * dy));
 }
@@ -21,7 +21,7 @@ float	distance(float dx, float dy)
 // fisheye correction: 1. angular distance of alpha and beta 2. triangle: cos(beta - alpha) * dist_dist = corr_dist
 // calculated projected height h of Wall with real height BLOCK: using tan(FOV/2) = 1/2 * WIDTH / distanceToProjectionScreen
 
-float	correct_distance(t_vars *vars, float dist_d, float beta)
+double	correct_distance(t_vars *vars, double dist_d, double beta)
 {
 	return (dist_d * cos(beta - vars->player.alpha));
 }

@@ -56,7 +56,7 @@ void	decide_no_ea(t_vars *vars, t_touch *wall_slice)
 	}
 }
 
-void	wall_orientation(t_vars *vars, t_touch *wall_slice, float beta)
+void	wall_orientation(t_vars *vars, t_touch *wall_slice, double beta)
 {
 	(void)beta;
 	if (vars->player.y > wall_slice->touchpoint.y && vars->player.x > wall_slice->touchpoint.x)

@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 14:09:13 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:16 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	set_player(t_vars *vars, t_point p)
 	else if (vars->map.grid[p.px_y][p.px_x] == 'W')
 		vars->player.alpha = PI;
 	vars->player.start = p;
-	vars->player.x = (float)p.px_x * BLOCK + BLOCK / 2.0;
-	vars->player.y = (float)p.px_y * BLOCK + BLOCK / 2.0;
+	vars->player.x = (double)p.px_x * BLOCK + BLOCK / 2.0;
+	vars->player.y = (double)p.px_y * BLOCK + BLOCK / 2.0;
 }
 
-void	rotate_player(t_vars *vars, float angle_speed)
+void	rotate_player(t_vars *vars, double angle_speed)
 {
 	if (vars->player.left_rotate)
 		vars->player.alpha -= angle_speed;
@@ -39,10 +39,10 @@ void	rotate_player(t_vars *vars, float angle_speed)
 		vars->player.alpha += 2 * PI;
 }
 
-bool	wall_collision(t_vars *vars, float x_inc, float y_inc)
+bool	wall_collision(t_vars *vars, double x_inc, double y_inc)
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 	t_wall	collision;
 
 	x = vars->player.x + x_inc;
@@ -53,7 +53,7 @@ bool	wall_collision(t_vars *vars, float x_inc, float y_inc)
 	return (false);
 }
 
-void	transpose_player(t_vars *vars, float cos_inc, float sin_inc)
+void	transpose_player(t_vars *vars, double cos_inc, double sin_inc)
 {
 	if (vars->player.key_up && !wall_collision(vars, cos_inc, sin_inc))
 	{
@@ -80,9 +80,9 @@ void	transpose_player(t_vars *vars, float cos_inc, float sin_inc)
 void	move_player(t_vars *vars)
 {
 	int		speed;
-	float	angle_speed;
-	float	cos_inc;
-	float	sin_inc;
+	double	angle_speed;
+	double	cos_inc;
+	double	sin_inc;
 
 	speed = 3;
 	angle_speed = 0.05;

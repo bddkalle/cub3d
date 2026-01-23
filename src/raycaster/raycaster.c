@@ -6,13 +6,13 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 15:50:15 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:21 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	wall_info(t_vars *vars, t_touch *wall_slice, float beta)
+void	wall_info(t_vars *vars, t_touch *wall_slice, double beta)
 {
 	wall_slice->distance = correct_distance(vars, wall_slice->distance, beta);
 	wall_orientation(vars, wall_slice, beta);
@@ -20,7 +20,7 @@ void	wall_info(t_vars *vars, t_touch *wall_slice, float beta)
 }
 
 /*
-void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
+void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map)
 {
 	t_touch	wall_slice_hor;
 	t_touch	wall_slice_ver;
@@ -43,7 +43,7 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 	}
 }*/
 
-void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
+void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map)
 {
 	t_touch	wall_slice_hor;
 	t_touch	wall_slice_ver;
