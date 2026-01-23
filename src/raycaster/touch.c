@@ -30,7 +30,7 @@ void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	tp = &wall_slice->touchpoint;
 	wall_slice->orient = HORIZONTAL;
 	if (sin(beta) < 0)
-		tp->y = (int)(vars->player.y / BLOCK) * BLOCK - 1;
+		tp->y = (int)(vars->player.y / BLOCK) * BLOCK - 1e-4;
 	else if (sin(beta) > 0)
 		tp->y = (int)(vars->player.y / BLOCK) * BLOCK + BLOCK;
 	else
@@ -71,7 +71,7 @@ void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	tp = &wall_slice->touchpoint;
 	wall_slice->orient = VERTICAL;
 	if (cos(beta) < 0)
-		tp->x = (int)(vars->player.x / BLOCK) * BLOCK - 1;
+		tp->x = (int)(vars->player.x / BLOCK) * BLOCK - 1e-4;
 	else if (cos(beta) > 0)
 		tp->x = (int)(vars->player.x / BLOCK) * BLOCK + BLOCK;
 	else

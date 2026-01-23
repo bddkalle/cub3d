@@ -6,15 +6,15 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 16:04:40 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 21:48:33 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#  define WIDTH 1280
-#  define HEIGHT 720
+#  define WIDTH 1920
+#  define HEIGHT 1080
 #  define BLOCK 64
 
 #  define W 119
