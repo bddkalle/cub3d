@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 11:44:30 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:50:15 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 	//printf("hor dist: %f, vert_dist: %f\n", wall_slice_hor.distance, wall_slice_ver.distance);
 	if (wall_slice_hor.distance < 0 || wall_slice_ver.distance < wall_slice_hor.distance)
 	{
-		wall_info2(vars, &wall_slice_ver, beta);
+		wall_info(vars, &wall_slice_ver, beta);
 		//printf("Player (%f, %f), TP Vertical (%f, %f)\n", vars->player.x, vars->player.y, wall_slice_ver.touchpoint.x, wall_slice_ver.touchpoint.y);
 		draw_vertical_line(vars, ray_id, &wall_slice_ver, draw_map);
 	}
 	else if (wall_slice_ver.distance < 0 || wall_slice_ver.distance > wall_slice_hor.distance)
 	{
-		wall_info2(vars, &wall_slice_hor, beta);
+		wall_info(vars, &wall_slice_hor, beta);
 		//printf("Player (%f, %f), TP Horizontal (%f, %f)\n", vars->player.x, vars->player.y, wall_slice_hor.touchpoint.x, wall_slice_hor.touchpoint.y);
 		draw_vertical_line(vars, ray_id, &wall_slice_hor, draw_map);
 	}
@@ -50,25 +50,18 @@ void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map)
 
 	first_horizontal_intersec(vars, &wall_slice_hor, beta);
 	first_vertical_intersec(vars, &wall_slice_ver, beta);
-	while (wall_slice_hor.touch != TOUCH && wall_slice_ver.touch != TOUCH)
-	{
-		//if (wall_slice_hor.distance < wall_slice_ver.distance)
-			next_horizontal_intersec(vars, &wall_slice_hor, beta);
-		//else
-			next_vertical_intersec(vars, &wall_slice_ver, beta);
-		//write(1, "next intersec\n", 15);
-	}
-	printf("stopped!\n ray_id: %d\n beta: %f\n ver.dist: %f\n hor.dist: %f\n", ray_id, beta, wall_slice_ver.distance, wall_slice_hor.distance);
+	while (wall_slice_hor.touch == NOTOUCH)
+		next_horizontal_intersec(vars, &wall_slice_hor, beta);
+	while (wall_slice_ver.touch == NOTOUCH)
+		next_vertical_intersec(vars, &wall_slice_ver, beta);
 	if (wall_slice_ver.distance < wall_slice_hor.distance && wall_slice_ver.touch == TOUCH)
 	{
 		wall_info(vars, &wall_slice_ver, beta);
 		draw_vertical_line(vars, ray_id, &wall_slice_ver, draw_map);
-		write(1, "vertical ray\n", 14);
 	}
-	else if (wall_slice_ver.distance >= wall_slice_hor.distance && wall_slice_hor.touch == TOUCH)
+	else if (wall_slice_ver.distance > wall_slice_hor.distance && wall_slice_hor.touch == TOUCH)
 	{
 		wall_info(vars, &wall_slice_hor, beta);
 		draw_vertical_line(vars, ray_id, &wall_slice_hor, draw_map);
-		write(1, "horizontal ray\n", 16);
 	}
 }

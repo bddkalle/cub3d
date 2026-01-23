@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 20:22:05 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:51:17 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	y_texture_mapping(t_touch *wall_slice, int y)
 	float	b;
 	int		txt_y;
 
-	a = ((float)wall_slice->txt->px_h - 1) / (wall_slice->wall_bottom - wall_slice->wall_top);
+	a = ((float)wall_slice->txt->px_h) / (wall_slice->wall_bottom - wall_slice->wall_top);
 	b = a * wall_slice->wall_top * (-1);
 	txt_y = a * y + b;
 	return (txt_y);

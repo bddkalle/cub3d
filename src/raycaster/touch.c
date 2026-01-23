@@ -29,12 +29,12 @@ void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 
 	tp = &wall_slice->touchpoint;
 	wall_slice->orient = HORIZONTAL;
-	if (sin(beta) <= 0)
+	if (sin(beta) < 0)
 		tp->y = (int)(vars->player.y / BLOCK) * BLOCK - 1;
 	else if (sin(beta) > 0)
 		tp->y = (int)(vars->player.y / BLOCK) * BLOCK + BLOCK;
 	else
-		wall_slice->distance = INFINITY;
+		wall_slice->distance = -1;
 	if (sin(beta) != 0)
 		tp->x = vars->player.x + (tp->y - vars->player.y) / tan(beta);
 	else
@@ -69,20 +69,19 @@ void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, float beta)
 	t_fpoint	*tp;
 
 	tp = &wall_slice->touchpoint;
-	wall_slice->orient = HORIZONTAL;
-	if (cos(beta) <= 0)
+	wall_slice->orient = VERTICAL;
+	if (cos(beta) < 0)
 		tp->x = (int)(vars->player.x / BLOCK) * BLOCK - 1;
 	else if (cos(beta) > 0)
 		tp->x = (int)(vars->player.x / BLOCK) * BLOCK + BLOCK;
 	else
-		wall_slice->distance = INFINITY;
-	if (sin(beta) != 0)
+		wall_slice->distance = -1; // not sufficient, what about tp->x, tp->y?
+	if (cos(beta) != 0)
 		tp->y = vars->player.y + (tp->x - vars->player.x) * tan(beta);
 	else
-		tp->x = vars->player.x;
+		tp->y = vars->player.y;
 	wall_slice->distance = distance(tp->x - vars->player.x,\
 		tp->y - vars->player.y);
-	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
