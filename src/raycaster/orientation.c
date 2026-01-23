@@ -5,7 +5,7 @@ void	decide_so_we(t_vars *vars, t_touch *wall_slice)
 	if ((int)(wall_slice->touchpoint.y + 1) % BLOCK == 0 && touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y + 1) == NOTOUCH)
 	{
 		wall_slice->txt = &vars->map.so;
-		wall_slice->offset = (int)wall_slice->touchpoint.x % BLOCK; // handle mirroring
+		wall_slice->offset = (int)wall_slice->touchpoint.x % BLOCK;
 	}
 	else
 	{
@@ -19,7 +19,7 @@ void	decide_so_ea(t_vars *vars, t_touch *wall_slice)
 	if ((int)(wall_slice->touchpoint.y + 1) % BLOCK == 0 && touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y + 1) == NOTOUCH)
 	{
 		wall_slice->txt = &vars->map.so;
-		wall_slice->offset = (int)wall_slice->touchpoint.x % BLOCK; // handle mirroring
+		wall_slice->offset = (int)wall_slice->touchpoint.x % BLOCK;
 	}
 	else
 	{
@@ -33,7 +33,7 @@ void	decide_no_we(t_vars *vars, t_touch *wall_slice)
 	if ((int)(wall_slice->touchpoint.y) % BLOCK == 0 && touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y - 1) == NOTOUCH)
 	{
 		wall_slice->txt = &vars->map.no;
-		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.x % BLOCK; // handle mirroring
+		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.x % BLOCK;
 	}
 	else
 	{
@@ -47,7 +47,7 @@ void	decide_no_ea(t_vars *vars, t_touch *wall_slice)
 	if ((int)(wall_slice->touchpoint.y) % BLOCK == 0 && touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y - 1) == NOTOUCH)
 	{
 		wall_slice->txt = &vars->map.no;
-		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.x % BLOCK; // handle mirroring
+		wall_slice->offset = BLOCK - 1 - (int)wall_slice->touchpoint.x % BLOCK;
 	}
 	else
 	{
