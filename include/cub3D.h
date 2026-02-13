@@ -6,15 +6,15 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 21:48:33 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/13 10:18:15 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#  define WIDTH 1920
-#  define HEIGHT 1080
+#  define WIDTH 1280
+#  define HEIGHT 720
 #  define BLOCK 64
 
 #  define W 119
@@ -86,7 +86,7 @@ void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta);
 void	touch_horizontal(t_vars *vars, t_touch *wall_slice, double beta, int ray_id);
 void	touch_vertical(t_vars *vars, t_touch *wall_slice, double beta, int ray_id);
 int		get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y);
-void	wall_orientation(t_vars *vars, t_touch *wall_slice, double beta);
+void	wall_orientation(t_vars *vars, t_touch *wall_slice);
 
 //Projection
 double	distance(double dx, double dy);

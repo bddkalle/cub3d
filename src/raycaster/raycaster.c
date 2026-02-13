@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 21:50:48 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/13 10:18:33 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	wall_info(t_vars *vars, t_touch *wall_slice, double beta)
 {
 	wall_slice->distance = correct_distance(vars, wall_slice->distance, beta);
-	wall_orientation(vars, wall_slice, beta);
+	wall_orientation(vars, wall_slice);
 	wall_projection(wall_slice);
 }
 
