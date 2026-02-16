@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/13 10:18:15 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/13 11:10:17 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ int		key_release(int keycode, t_vars *vars);
 
 //Draw
 void	put_pixel(t_vars *vars, int x, int y, int color);
+void	draw_line(t_vars *vars, t_point p1, t_point p2, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
 void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map);
 void	draw_map(t_vars *vars);
-void	draw_ray(t_vars *vars, double ray_x, double ray_y);
+void	draw_ray(t_vars *vars, t_fpoint touchpoint);
 int		create_argb(int	rgb[3]);
 
 //Raycaster

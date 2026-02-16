@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:24:35 by vboxuser          #+#    #+#             */
-/*   Updated: 2026/01/23 16:06:50 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:41:27 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ t_point	screen_mapping(t_vars *vars, double x, double y)
 	return (mapped_p);
 }
 
+void	draw_ray(t_vars *vars, t_fpoint touchpoint)
+{
+	t_point	mapped_player_pos;
+	t_point	mapped_touchpoint;
+
+	mapped_player_pos = screen_mapping(vars, vars->player.x, vars->player.y);
+	mapped_touchpoint = screen_mapping(vars, touchpoint.x, touchpoint.y);
+	//////////
+	//mapped_player_pos.px_x = (int)vars->player.x;
+	//mapped_player_pos.px_y = (int)vars->player.y;
+	//mapped_touchpoint.px_x = (int)touchpoint.x;
+	//mapped_touchpoint.px_y = (int)touchpoint.y;
+	//printf("mapped_player: (%lu, %lu)\nmapped_touchpoint: (%lu, %lu)\n", mapped_player_pos.px_x, mapped_player_pos.px_y, mapped_touchpoint.px_x, mapped_touchpoint.px_y);
+	draw_line(vars, mapped_player_pos, mapped_touchpoint, 0xFF0000);
+}
+/*
 void	draw_ray(t_vars *vars, double ray_x, double ray_y)
 {
 	t_point	mapped_p;
@@ -35,7 +51,7 @@ void	draw_ray(t_vars *vars, double ray_x, double ray_y)
 	put_pixel(vars,\
 		mapped_p.px_x, mapped_p.px_y, 0xFF0000);
 
-}
+}*/
 
 void	draw_player(t_vars *vars)
 {

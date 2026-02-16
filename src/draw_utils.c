@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 09:36:50 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/13 12:47:58 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,36 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw
 		}
 		else
 			put_pixel(vars, ray_id, y--, create_argb(vars->map.ceiling));
+	}
+}
+
+void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
+{
+	double	x;
+	double	y;
+	double	dx;
+	double	dy;
+	double	step;
+	int		i;
+
+	dx = p2.px_x - p1.px_x;
+	dy = p2.px_y - p1.px_y;
+	if (fabs(dx) >= fabs(dy))
+		step = fabs(dx);
+	else
+		step = fabs(dy);
+	//printf("step: %f\n", step);
+	dx = dx / step;
+	dy = dy / step;
+	//printf("dx: %f, dy: %f\n", dx, dy);
+	x = p1.px_x;
+	y = p2.px_y;
+	i = 0;
+	while (i < (int)step)
+	{
+		put_pixel(vars, x, y, color);
+		x += dx;
+		y += dy;
+		i++;
 	}
 }
