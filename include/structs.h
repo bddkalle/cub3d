@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 16:37:11 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:46:23 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_point
 
 typedef struct s_fpoint
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }	t_fpoint;
 
 typedef enum e_wall
@@ -90,8 +90,8 @@ typedef struct s_touch
 	t_fpoint	touchpoint;
 	t_txt		*txt;
 	int			offset;
-	float		distance;
-	float		wall_height;
+	double		distance;
+	double		wall_height;
 	int			wall_bottom;
 	int			wall_top;
 }	t_touch;

@@ -6,13 +6,13 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/13 12:47:58 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/16 20:33:34 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int		create_argb(int	rgb[3])
+int	create_argb(int	rgb[3])
 {
 	return (0xFF << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
@@ -73,25 +73,23 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw
 
 void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
 {
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
-	double	step;
+	float	x;
+	float	y;
+	float	dx;
+	float	dy;
+	float	step;
 	int		i;
 
-	dx = p2.px_x - p1.px_x;
-	dy = p2.px_y - p1.px_y;
+	dx = (float)p2.px_x - p1.px_x;
+	dy = (float)p2.px_y - p1.px_y;
 	if (fabs(dx) >= fabs(dy))
 		step = fabs(dx);
 	else
 		step = fabs(dy);
-	//printf("step: %f\n", step);
 	dx = dx / step;
 	dy = dy / step;
-	//printf("dx: %f, dy: %f\n", dx, dy);
 	x = p1.px_x;
-	y = p2.px_y;
+	y = p1.px_y;
 	i = 0;
 	while (i < (int)step)
 	{
