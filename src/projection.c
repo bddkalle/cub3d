@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:26 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/16 19:47:09 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:45:14 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	correct_distance(t_vars *vars, double dist_d, double beta)
 	return (dist_d * cos(beta - vars->player.alpha));
 }
 
-void	wall_projection(t_touch *slice)
+void	wall_projection(t_intrsec *slice)
 {
 	slice->wall_height = (BLOCK / slice->distance) * \
 	(WIDTH / 2.0) / tan(PI / 6);

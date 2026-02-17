@@ -1,6 +1,6 @@
 #include "../../include/cub3D.h"
 
-void	decide_so_we(t_vars *vars, t_touch *wall_slice)
+void	decide_so_we(t_vars *vars, t_intrsec *wall_slice)
 {
 	if (wall_slice->orient == HORIZONTAL)
 	{
@@ -14,7 +14,7 @@ void	decide_so_we(t_vars *vars, t_touch *wall_slice)
 	}
 }
 
-void	decide_so_ea(t_vars *vars, t_touch *wall_slice)
+void	decide_so_ea(t_vars *vars, t_intrsec *wall_slice)
 {
 	if (wall_slice->orient == HORIZONTAL)
 	{
@@ -28,7 +28,7 @@ void	decide_so_ea(t_vars *vars, t_touch *wall_slice)
 	}
 }
 
-void	decide_no_we(t_vars *vars, t_touch *wall_slice)
+void	decide_no_we(t_vars *vars, t_intrsec *wall_slice)
 {
 	if (wall_slice->orient == HORIZONTAL)
 	{
@@ -42,7 +42,7 @@ void	decide_no_we(t_vars *vars, t_touch *wall_slice)
 	}
 }
 
-void	decide_no_ea(t_vars *vars, t_touch *wall_slice)
+void	decide_no_ea(t_vars *vars, t_intrsec *wall_slice)
 {
 	if (wall_slice->orient == HORIZONTAL)
 	{
@@ -56,7 +56,7 @@ void	decide_no_ea(t_vars *vars, t_touch *wall_slice)
 	}
 }
 
-void	wall_orientation(t_vars *vars, t_touch *wall_slice)
+void	wall_orientation(t_vars *vars, t_intrsec *wall_slice)
 {
 	if (vars->player.y > wall_slice->touchpoint.y && vars->player.x > wall_slice->touchpoint.x)
 		decide_so_ea(vars, wall_slice);

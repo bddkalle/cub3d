@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/16 19:46:23 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:41:51 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef enum e_orient
 	VERTICAL,
 }	t_orient;
 
-typedef struct s_touch
+typedef struct s_intrsec
 {
 	t_orient	orient;
 	t_wall		touch;
@@ -94,7 +94,7 @@ typedef struct s_touch
 	double		wall_height;
 	int			wall_bottom;
 	int			wall_top;
-}	t_touch;
+}	t_intrsec;
 
 typedef struct s_player
 {

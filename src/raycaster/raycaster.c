@@ -6,13 +6,13 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/16 20:37:03 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:43:13 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	wall_info(t_vars *vars, t_touch *wall_slice, double beta)
+void	wall_info(t_vars *vars, t_intrsec *wall_slice, double beta)
 {
 	wall_slice->distance = correct_distance(vars, wall_slice->distance, beta);
 	wall_orientation(vars, wall_slice);
@@ -21,8 +21,8 @@ void	wall_info(t_vars *vars, t_touch *wall_slice, double beta)
 
 void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map)
 {
-	t_touch	wall_slice_hor;
-	t_touch	wall_slice_ver;
+	t_intrsec	wall_slice_hor;
+	t_intrsec	wall_slice_ver;
 
 	first_horizontal_intersec(vars, &wall_slice_hor, beta);
 	first_vertical_intersec(vars, &wall_slice_ver, beta);

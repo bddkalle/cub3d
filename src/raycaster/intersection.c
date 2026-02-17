@@ -23,7 +23,7 @@ t_wall	touch(t_vars *vars, double px, double py)
 		return (NOTOUCH);
 }
 
-void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
+void	first_horizontal_intersec(t_vars *vars, t_intrsec *wall_slice, double beta)
 {
 	t_fpoint	*tp;
 
@@ -47,7 +47,7 @@ void	first_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
+void	next_horizontal_intersec(t_vars *vars, t_intrsec *wall_slice, double beta)
 {
 	double	dx;
 	double	dy;
@@ -67,7 +67,7 @@ void	next_horizontal_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
+void	first_vertical_intersec(t_vars *vars, t_intrsec *wall_slice, double beta)
 {
 	t_fpoint	*tp;
 
@@ -91,7 +91,7 @@ void	first_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
+void	next_vertical_intersec(t_vars *vars, t_intrsec *wall_slice, double beta)
 {
 	double	dx;
 	double	dy;
@@ -111,7 +111,7 @@ void	next_vertical_intersec(t_vars *vars, t_touch *wall_slice, double beta)
 	wall_slice->touch = touch(vars, wall_slice->touchpoint.x, wall_slice->touchpoint.y);
 }
 
-void	touch_horizontal(t_vars *vars, t_touch *wall_slice, double beta, int ray_id)
+void	touch_horizontal(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id)
 {
 	t_fpoint	*tp;
 
@@ -155,7 +155,7 @@ void	touch_horizontal(t_vars *vars, t_touch *wall_slice, double beta, int ray_id
 		tp->y - vars->player.y);
 }
 
-void	touch_vertical(t_vars *vars, t_touch *wall_slice, double beta, int ray_id)
+void	touch_vertical(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id)
 {
 	t_fpoint	*tp;
 

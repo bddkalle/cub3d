@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/16 20:33:34 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:43:38 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_square(t_vars *vars, int x, int y, int size, int color)
 		put_pixel(vars, x + i, y + size, color);
 }
 
-void	draw_vertical_line(t_vars *vars, int ray_id, t_touch *wall_slice, bool draw_map)
+void	draw_vertical_line(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
 {
 	int		y;
 	int		color;

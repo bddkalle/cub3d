@@ -6,14 +6,14 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/23 16:06:24 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:45:18 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 // linear mapping from screen renderer to texture, solve linear equation system using 1. wall_bottom -> (px_h - 1) 2. wall_top -> 0
-int	y_texture_mapping(t_touch *wall_slice, int y)
+int	y_texture_mapping(t_intrsec *wall_slice, int y)
 {
 	double	a;
 	double	b;
@@ -25,7 +25,7 @@ int	y_texture_mapping(t_touch *wall_slice, int y)
 	return (txt_y);
 }
 
-int	get_color_from_txt(t_vars *vars, t_touch *wall_slice, int y)
+int	get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y)
 {
 	char	*addr;
 	int		index;
