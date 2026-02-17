@@ -6,12 +6,11 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:46:34 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/06 14:37:10 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:06:51 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
 
 int	key_press(int keycode, t_vars *vars)
 {
@@ -46,14 +45,11 @@ int	key_release(int keycode, t_vars *vars)
 		vars->player.left_rotate = false;
 	if (keycode == RIGHT)
 		vars->player.right_rotate = false;
-
 	return (0);
 }
 
 int	close_win(t_vars *vars)
 {
-	//free_sprites(vars);
 	free_all(vars);
-	//free_grid(vars);
 	exit (0);
 }

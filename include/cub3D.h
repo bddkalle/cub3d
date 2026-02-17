@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 11:35:32 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:49:37 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define RIGHT 65363
 
 #  define PI 3.14159265359
+#  define INT_MAX 2147483647
 
 # include <stdbool.h>
 # include <stdio.h>
@@ -48,7 +49,7 @@ void	parse_floor_color(t_vars *vars, char *line, int fd, char **color_arr);
 void	parse_ceiling_color(t_vars *vars, char *line, int fd, char **color_arr);
 int		ft_count_c(char c, char *str);
 int		valid_c(char *s);
-void	set_img_addr(t_vars *vars, char *line, int fd, t_txt txt);
+void	set_img_addr(t_vars *vars, char *line, int fd, t_txt *txt);
 
 //Error
 void	input_error(char *errmsg);
@@ -58,6 +59,8 @@ void	parse_color_error(t_vars *vars, char *line, int fd, char **color_arr);
 //Free
 void	free_null(void **ptr);
 void	free_all(t_vars *vars);
+void	free_incomplete_gridntile(t_vars *vars, t_point grid_pos);
+void	free_incomplete_grid_al(t_vars *vars, t_point grid_pos);
 
 //MLX
 int		close_win(t_vars *vars);
@@ -66,27 +69,44 @@ int		key_release(int keycode, t_vars *vars);
 
 //Draw
 void	put_pixel(t_vars *vars, int x, int y, int color);
+void	draw_line(t_vars *vars, t_point p1, t_point p2, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
+void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map);
 void	draw_map(t_vars *vars);
-int		create_rgb(int	rgb[3]);
+void	draw_ray(t_vars *vars, t_fpoint touchpoint);
+int		create_argb(int	rgb[3]);
 
 //Raycaster
-void	cast_ray(t_vars *vars, float beta, int ray_id, bool draw_map);
-bool	touch(t_vars *vars, float px, float py);
+void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map);
+t_wall	touch(t_vars *vars, double px, double py);
+void	first_horizontal_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
+void	next_horizontal_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
+void	first_vertical_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
+void	next_vertical_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
+void	touch_horizontal(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id);
+void	touch_vertical(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id);
+int		get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y);
+void	wall_orientation(t_vars *vars, t_intrsec *wall_slice);
 
 //Projection
-float	distance(float dx, float dy);
-float	correct_distance(t_vars *vars, float dist_d, float beta);
-void	wall_projection(t_touch *touch);
+double	distance(double dx, double dy);
+double	correct_distance(t_vars *vars, double dist_d, double beta);
+void	wall_projection(t_intrsec *touch);
+void	wall_info(t_vars *vars, t_intrsec *wall_slice, double beta);
 
 //Player
 void	init_player(t_player *player);
 void	move_player(t_vars *vars);
+void	set_player(t_vars *vars, t_point p);
 
 //Map
-void	parse_map(t_vars *vars, char *line, int fd);
+void	parse_map(t_vars *vars, char *line, int fd, char *file);
 int		map_detected(t_vars *vars, char *s);
+int		init_grid(t_vars *vars, char *map_begin, char **line2, char *file);
+void	fill_grid(t_vars *vars, int fd2, char *map_begin, t_point grid_pos);
+void	alloc_line(t_vars *vars, t_point p, char *line, int fd2);
+void	fill_grid_row(t_vars *vars, t_point grid_pos, char *line, int fd2);
 
 //Validate
 void	validate_fileformat(char *s);
@@ -97,5 +117,14 @@ void	validate_ea(t_vars *vars, char *line, int fd);
 void	validate_textures(t_vars *vars);
 void	validate_f(t_vars *vars, char *line, int fd);
 void	validate_c(t_vars *vars, char *line, int fd);
+int		valid_map_chars(t_tile_type tile);
+void	validate_map(t_vars *vars);
+int		wall_check(t_vars *vars);
+
+//Debug
+void	print_grid(t_vars *vars);
+
+//Utils
+double	absolute(double x);
 
 #endif

@@ -6,33 +6,29 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/12/28 19:55:38 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:06:16 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	init_player(t_player *player)
+void	set_player(t_vars *vars, t_point p)
 {
-	*player = (t_player){};
-	player->x = WIDTH / 2.0;
-	player->y = HEIGHT / 2.0;
-	player->alpha = PI / 2.0;
+	if (vars->map.grid[p.px_y][p.px_x] == 'N')
+		vars->player.alpha = -PI / 2.0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'E')
+		vars->player.alpha = 0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'S')
+		vars->player.alpha = PI / 2.0;
+	else if (vars->map.grid[p.px_y][p.px_x] == 'W')
+		vars->player.alpha = PI;
+	vars->player.start = p;
+	vars->player.x = (double)p.px_x * BLOCK + BLOCK / 2.0;
+	vars->player.y = (double)p.px_y * BLOCK + BLOCK / 2.0;
 }
 
-void	move_player(t_vars *vars)
+void	rotate_player(t_vars *vars, double angle_speed)
 {
-	int		speed;
-	float	angle_speed;
-	float	cos_angle;
-	float	sin_angle;
-
-	speed = 3;
-	angle_speed = 0.05;
-	if (!isfinite(vars->player.alpha))
-		fatal_error(vars, "Player angle is infinite.", "cos/sin");
-	cos_angle = cos(vars->player.alpha);
-	sin_angle = sin(vars->player.alpha);
 	if (vars->player.left_rotate)
 		vars->player.alpha -= angle_speed;
 	if (vars->player.right_rotate)
@@ -41,28 +37,59 @@ void	move_player(t_vars *vars)
 		vars->player.alpha -= 2 * PI;
 	if (vars->player.alpha < 0)
 		vars->player.alpha += 2 * PI;
-	if (vars->player.key_up)
+}
+
+bool	wall_collision(t_vars *vars, double x_inc, double y_inc)
+{
+	double	x;
+	double	y;
+	t_wall	collision;
+
+	x = vars->player.x + x_inc;
+	y = vars->player.y + y_inc;
+	collision = touch(vars, x, y);
+	if (collision == TOUCH)
+		return (true);
+	return (false);
+}
+
+void	transpose_player(t_vars *vars, double cos_inc, double sin_inc)
+{
+	if (vars->player.key_up && !wall_collision(vars, cos_inc, sin_inc))
 	{
-		vars->player.x += cos_angle * speed;
-		vars->player.y += sin_angle * speed;
+		vars->player.x += cos_inc;
+		vars->player.y += sin_inc;
 	}
-//		player->y -= speed;
-	if (vars->player.key_down)
+	if (vars->player.key_down && !wall_collision(vars, -cos_inc, -sin_inc))
 	{
-		vars->player.x -= cos_angle * speed;
-		vars->player.y -= sin_angle * speed;
+		vars->player.x -= cos_inc;
+		vars->player.y -= sin_inc;
 	}
-		// player->y += speed;
-	if (vars->player.key_left)
+	if (vars->player.key_left && !wall_collision(vars, sin_inc, -cos_inc))
 	{
-		vars->player.x += sin_angle * speed;
-		vars->player.y -= cos_angle * speed;
+		vars->player.x += sin_inc;
+		vars->player.y -= cos_inc;
 	}
-		// player->x -= speed;
-	if (vars->player.key_right)
+	if (vars->player.key_right && !wall_collision(vars, -sin_inc, cos_inc))
 	{
-		vars->player.x -= sin_angle * speed;
-		vars->player.y += cos_angle * speed;
+		vars->player.x -= sin_inc;
+		vars->player.y += cos_inc;
 	}
-		// player->x += speed;
+}
+
+void	move_player(t_vars *vars)
+{
+	int		speed;
+	double	angle_speed;
+	double	cos_inc;
+	double	sin_inc;
+
+	speed = 3;
+	angle_speed = 0.05;
+	if (!isfinite(vars->player.alpha))
+		fatal_error(vars, "Player alpha is infinite.", "cos/sin");
+	cos_inc = speed * cos(vars->player.alpha);
+	sin_inc = speed * sin(vars->player.alpha);
+	rotate_player(vars, angle_speed);
+	transpose_player(vars, cos_inc, sin_inc);
 }

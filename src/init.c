@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/16 11:46:34 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/22 10:46:54 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-char	*handle_line(t_vars *vars, char *line, int fd)
+char	*parse_textures(t_vars *vars, char *line, int fd)
 {
 	int	i;
 
@@ -21,17 +21,17 @@ char	*handle_line(t_vars *vars, char *line, int fd)
 		i = 0;
 		while (ft_isspace(line[i]))
 			i++;
-		if (ft_strncmp("NO", &line[i], 2) == 0)	//handle North texture
-			load_no_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("SO", &line[i], 2) == 0)	//handle South texture
-			load_so_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("WE", &line[i], 2) == 0)	//handle West texture
-			load_we_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("EA", &line[i], 2) == 0)	//handle East texture
-			load_ea_textures(vars, line, i+2, fd);
-		else if (ft_strncmp("F", &line[i], 1) == 0)	//handle floor color
+		if (ft_strncmp("NO", &line[i], 2) == 0)
+			load_no_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("SO", &line[i], 2) == 0)
+			load_so_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("WE", &line[i], 2) == 0)
+			load_we_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("EA", &line[i], 2) == 0)
+			load_ea_textures(vars, line, i + 2, fd);
+		else if (ft_strncmp("F", &line[i], 1) == 0)
 			set_floor_color(vars, line, i, fd);
-		else if (ft_strncmp("C", &line[i], 1) == 0)	//handle ceiling color
+		else if (ft_strncmp("C", &line[i], 1) == 0)
 			set_ceiling_color(vars, line, i, fd);
 		else if (map_detected(vars, &line[i]))
 			return (line);
@@ -55,19 +55,22 @@ void	cub_interpreter(t_vars *vars, char *file)
 		close(fd);
 		fatal_error(vars, "Could not read from .cub file", "get_next_line");
 	}
-	line = handle_line(vars, line, fd);
+	line = parse_textures(vars, line, fd);
 	validate_textures(vars);
-	printf("%s\n", line);
-	parse_map(vars, line, fd);
+	if (!line)
+	{
+		close(fd);
+		fatal_error(vars, "No map included", "cub_interpreter");
+	}
+	parse_map(vars, line, fd, file);
 	close(fd);
 }
 
-/* void	init_map(t_vars *vars)
+void	init_player(t_player *player)
 {
-	//get_map_size()
-	parse_map(vars);
+	*player = (t_player){};
 }
- */
+
 void	init_vars(t_vars *vars)
 {
 	*vars = (t_vars){};
@@ -83,14 +86,13 @@ void	init_game(t_vars *vars, char *file)
 {
 	init_vars(vars);
 	vars->mlx = mlx_init();
-	cub_interpreter(vars, file);
-	// init_map(vars);
 	if (!vars->mlx)
 		fatal_error(vars, "Could not initiate mlx session", "mlx_init");
+	cub_interpreter(vars, file);
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!vars->win)
 		fatal_error(vars, "Could not initiate new window", "mlx_new_window");
-	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);	//is buffer needed or directly img?
+	vars->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	if (!vars->img)
 		fatal_error(vars, "Could not initiate buffer image", "mlx_new_image");
 	vars->img_addr = mlx_get_data_addr(vars->img, &vars->bpp, \

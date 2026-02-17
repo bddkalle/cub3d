@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/01/16 11:04:25 by fschnorr         ###   ########.fr        #
+#    Updated: 2026/02/17 14:51:28 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,13 @@ NAME = cub3D
 INCLUDE = -I include $(LIBFT_INCLUDES) $(MLX_INCLUDE) $(LAPI_INCLUDE)
 SRC =	$(addsuffix .c,							\
 		$(addprefix src/, 						\
+							debug				\
 							draw				\
 							draw_map			\
 							draw_utils			\
 							error				\
 							free				\
+							free2				\
 							hook				\
 							init				\
 							init2				\
@@ -27,19 +29,27 @@ SRC =	$(addsuffix .c,							\
 							init4				\
 							main				\
 							player				\
-							raycaster			\
-							texture				\
+							texturing			\
 							projection			\
+							utils				\
 		))										\
 		$(addsuffix .c,							\
 		$(addprefix src/map/,					\
 							parse_map			\
 							parse_map_utils		\
+							parse_map_utils2	\
 		))										\
 		$(addsuffix .c,							\
 		$(addprefix src/validate/,				\
 							validate			\
 							validate2			\
+							validate3			\
+		))										\
+		$(addsuffix .c,							\
+		$(addprefix src/raycaster/,				\
+							raycaster			\
+							intersection				\
+							orientation			\
 		))
 OBJS := $(SRC:.c=.o)
 

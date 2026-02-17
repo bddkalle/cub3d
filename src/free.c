@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:36:20 by fschnorr          #+#    #+#             */
-/*   Updated: 2025/11/21 14:14:03 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/01/20 20:12:05 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,16 @@ void	free_imgs(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->map.no.img);
 		vars->map.no.img = NULL;
 	}
-
 	if (vars->map.so.img)
 	{
 		mlx_destroy_image(vars->mlx, vars->map.so.img);
 		vars->map.so.img = NULL;
 	}
-
 	if (vars->map.we.img)
 	{
 		mlx_destroy_image(vars->mlx, vars->map.we.img);
 		vars->map.we.img = NULL;
 	}
-
 	if (vars->map.ea.img)
 	{
 		mlx_destroy_image(vars->mlx, vars->map.ea.img);
@@ -67,9 +64,35 @@ void	free_mlx(t_vars *vars)
 	}
 }
 
+void	free_grid(t_vars *vars)
+{
+	int	tmp;
+
+	if (vars->map.grid)
+	{
+		tmp = vars->map.g_h;
+		while (--tmp >= 0)
+		{
+			free(vars->map.grid[tmp]);
+			vars->map.grid[tmp] = NULL;
+		}
+		free_null((void **)&vars->map.grid);
+	}
+	if (vars->map.tile)
+	{
+		tmp = vars->map.g_h;
+		while (--tmp >= 0)
+		{
+			free(vars->map.tile[tmp]);
+			vars->map.tile[tmp] = NULL;
+		}
+		free_null((void **)&vars->map.tile);
+	}
+}
+
 void	free_all(t_vars *vars)
 {
-	free_null((void **)&vars->map.grid);
+	free_grid(vars);
 	free_imgs(vars);
 	free_mlx(vars);
 }
