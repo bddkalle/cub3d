@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:26 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:45:14 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:29:26 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ double	distance(double dx, double dy)
 
 // draw verital line, scale obstacle by distance, correct distance to avoid fisheye distortion
 // fisheye correction: 1. angular distance of alpha and beta 2. triangle: cos(beta - alpha) * dist_dist = corr_dist
-// calculated projected height h of Wall with real height BLOCK: using tan(FOV/2) = 1/2 * WIDTH / distanceToProjectionScreen
 
 double	correct_distance(t_vars *vars, double dist_d, double beta)
 {
 	return (dist_d * cos(beta - vars->player.alpha));
 }
+
+// calculated projected height h of Wall with real height BLOCK: using tan(FOV/2) = 1/2 * WIDTH / distanceToProjectionScreen
 
 void	wall_projection(t_intrsec *slice)
 {

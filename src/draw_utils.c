@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:50:35 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:07:20 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_square(t_vars *vars, int x, int y, int size, int color)
 		put_pixel(vars, x + i, y + size, color);
 }
 
-void	draw_vertical_line(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
+void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
 {
 	int		y;
 	int		color;
@@ -56,8 +56,8 @@ void	draw_vertical_line(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool dr
 	while (y >= 0)
 	{
 		if (draw_map\
-			&& (t_size)ray_id >= WIDTH - (vars->map.g_w * vars->map.pixel_per_grid)\
-			&& (t_size)y >= HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid))
+			&& (t_size)ray_id >= WIDTH - 1 - (vars->map.g_w * vars->map.pixel_per_grid)\
+			&& (t_size)y >= HEIGHT - 1 - (vars->map.g_h * vars->map.pixel_per_grid))
 			y--;
 		else if (y > wall_slice->wall_bottom)
 			put_pixel(vars, ray_id, y--, create_argb(vars->map.floor));
@@ -93,7 +93,7 @@ void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
 	i = 0;
 	while (i < (int)step)
 	{
-		put_pixel(vars, x, y, color);
+		put_pixel(vars, (int)x, (int)y, color);
 		x += dx;
 		y += dy;
 		i++;

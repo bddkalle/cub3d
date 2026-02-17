@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:24:48 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:43:13 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:49:07 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map)
 	if (wall_slice_ver.distance < wall_slice_hor.distance && wall_slice_ver.touch == TOUCH)
 	{
 		wall_info(vars, &wall_slice_ver, beta);
-		draw_vertical_line(vars, ray_id, &wall_slice_ver, draw_map);
+		draw_column(vars, ray_id, &wall_slice_ver, draw_map);
 		if (draw_map)
 			draw_ray(vars, wall_slice_ver.touchpoint);
 	}
 	else if (wall_slice_ver.distance > wall_slice_hor.distance && wall_slice_hor.touch == TOUCH)
 	{
 		wall_info(vars, &wall_slice_hor, beta);
-		draw_vertical_line(vars, ray_id, &wall_slice_hor, draw_map);
+		draw_column(vars, ray_id, &wall_slice_hor, draw_map);
 		if (draw_map)
 			draw_ray(vars, wall_slice_hor.touchpoint);
 	}

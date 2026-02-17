@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:48:45 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:49:37 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	put_pixel(t_vars *vars, int x, int y, int color);
 void	draw_line(t_vars *vars, t_point p1, t_point p2, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, int x, int y, int size, int color);
-void	draw_vertical_line(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map);
+void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map);
 void	draw_map(t_vars *vars);
 void	draw_ray(t_vars *vars, t_fpoint touchpoint);
 int		create_argb(int	rgb[3]);
