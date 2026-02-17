@@ -6,7 +6,7 @@
 #    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/02/17 14:39:45 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/02/17 14:51:28 by vboxuser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	$(addsuffix .c,							\
 							player				\
 							texturing			\
 							projection			\
+							utils				\
 		))										\
 		$(addsuffix .c,							\
 		$(addprefix src/map/,					\

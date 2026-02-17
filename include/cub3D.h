@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:42:33 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:48:45 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,8 @@ int		wall_check(t_vars *vars);
 
 //Debug
 void	print_grid(t_vars *vars);
+
+//Utils
+double	absolute(double x);
 
 #endif

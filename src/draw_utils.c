@@ -6,7 +6,7 @@
 /*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:43:38 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:50:35 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
 
 	dx = (float)p2.px_x - p1.px_x;
 	dy = (float)p2.px_y - p1.px_y;
-	if (fabs(dx) >= fabs(dy))
-		step = fabs(dx);
+	if (absolute(dx) >= absolute(dy))
+		step = absolute(dx);
 	else
-		step = fabs(dy);
+		step = absolute(dy);
 	dx = dx / step;
 	dy = dy / step;
 	x = p1.px_x;
