@@ -3,23 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   texturing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 16:15:22 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/18 09:53:44 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// linear mapping from screen renderer to texture, solve linear equation system using 1. wall_bottom -> px_h 2. wall_top -> 0
+/*
+linear mapping from screen renderer to texture
+solve linear equation system using
+1. wall_bottom -> px_h
+2. wall_top -> 0
+*/
+
 int	y_texture_mapping(t_intrsec *wall_slice, int y)
 {
 	double	a;
 	double	b;
 	int		txt_y;
 
-	a = ((double)wall_slice->txt->px_h)\
+	a = ((double)wall_slice->txt->px_h) \
 		/ (wall_slice->wall_bottom - wall_slice->wall_top);
 	b = a * wall_slice->wall_top * (-1);
 	txt_y = a * y + b;
@@ -38,12 +44,11 @@ int	get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y)
 		return (0);
 	txt_y = y_texture_mapping(wall_slice, y);
 	addr = wall_slice->txt->addr;
-	index = txt_y * wall_slice->txt->size_line\
+	index = txt_y * wall_slice->txt->size_line \
 		+ wall_slice->offset * (wall_slice->txt->bits_per_pixel / 8);
-	color = (addr[index] & 0xFF)\
-		| ((addr[index + 1] & 0xFF) << 8)\
-		| ((addr[index + 2] & 0xFF) << 16)\
+	color = (addr[index] & 0xFF) \
+		| ((addr[index + 1] & 0xFF) << 8) \
+		| ((addr[index + 2] & 0xFF) << 16) \
 		| ((addr[index + 3] & 0xFF) << 24);
 	return (color);
 }
-

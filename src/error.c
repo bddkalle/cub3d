@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:14:40 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 15:33:00 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/02/18 10:12:53 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,6 @@ void	input_error(char *errmsg)
 
 void	fatal_error(t_vars *vars, char *errmsg, char *fctname)
 {
-	// if (!errno)
-	// {
-	// 	write(STDERR_FILENO, "Error\n", 6);
-	// 	write(STDERR_FILENO, errmsg, ft_strlen(errmsg));
-	// 	write(STDERR_FILENO, "\n", 1);
-	// }
-	// else
-	// {
-	// 	write(STDERR_FILENO, "Error\n", 6);
-	// 	perror(fctname);
-	// 	write(STDERR_FILENO, errmsg, ft_strlen(errmsg));
-	// 	write(STDERR_FILENO, "\n", 1);
-	// }
 	write(STDERR_FILENO, "Error\n", 6);
 	write(STDERR_FILENO, fctname, ft_strlen(fctname));
 	write(STDERR_FILENO, ": ", 3);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:24:35 by vboxuser          #+#    #+#             */
-/*   Updated: 2026/02/17 17:09:31 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/18 09:43:02 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_point	screen_mapping(t_vars *vars, double x, double y)
 	double	c;
 	t_point	mapped_p;
 
-	a = (double)vars->map.pixel_per_grid / BLOCK;
-	b = WIDTH - (vars->map.g_w * vars->map.pixel_per_grid);
-	c = HEIGHT - (vars->map.g_h * vars->map.pixel_per_grid);
+	a = (double)vars->map.ppg / BLOCK;
+	b = WIDTH - (vars->map.g_w * vars->map.ppg);
+	c = HEIGHT - (vars->map.g_h * vars->map.ppg);
 	mapped_p.px_x = a * x + b;
 	mapped_p.px_y = a * y + c;
 	return (mapped_p);
@@ -42,19 +42,16 @@ void	draw_player(t_vars *vars)
 	t_point	mapped_player;
 
 	mapped_player = screen_mapping(vars, vars->player.x, vars->player.y);
-	draw_square(vars,\
-		mapped_player.px_x,\
-		mapped_player.px_y,\
-		vars->map.pixel_per_grid / 4,
-		0x00FF00);
+	draw_square(vars, mapped_player, vars->map.ppg / 4, 0x00FF00);
 }
 
 void	draw_map(t_vars *vars)
 {
 	t_size	y;
 	t_size	x;
+	t_point	pos;
 
-	vars->map.pixel_per_grid = HEIGHT / (4 * vars->map.g_h);
+	vars->map.ppg = HEIGHT / (4 * vars->map.g_h);
 	y = 0;
 	while (y < vars->map.g_h)
 	{
@@ -62,10 +59,11 @@ void	draw_map(t_vars *vars)
 		while (x < vars->map.g_w)
 		{
 			if (vars->map.grid[y][x] == '1')
-				draw_square(vars,\
-					WIDTH - 1 - (vars->map.g_w - x) * vars->map.pixel_per_grid,\
-					HEIGHT - 1 - (vars->map.g_h - y) * vars->map.pixel_per_grid,\
-					vars->map.pixel_per_grid, 0x0000FF);
+			{
+				pos.px_x = WIDTH - 1 - (vars->map.g_w - x) * vars->map.ppg;
+				pos.px_y = HEIGHT - 1 - (vars->map.g_h - y) * vars->map.ppg;
+				draw_square(vars, pos, vars->map.ppg, 0x0000FF);
+			}
 			x++;
 		}
 		y++;

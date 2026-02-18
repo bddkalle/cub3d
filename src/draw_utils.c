@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 17:07:20 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/18 10:09:25 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	create_argb(int	rgb[3])
+int	create_argb(int rgb[3])
 {
 	return (0xFF << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
@@ -29,25 +29,25 @@ void	put_pixel(t_vars *vars, int x, int y, int color)
 	vars->img_addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void	draw_square(t_vars *vars, int x, int y, int size, int color)
+void	draw_square(t_vars *vars, t_point pos, int size, int color)
 {
 	int	i;
 
 	i = -1;
 	while (++i < size)
-		put_pixel(vars, x + i, y, color);
+		put_pixel(vars, pos.px_x + i, pos.px_y, color);
 	i = -1;
 	while (++i < size)
-		put_pixel(vars, x, y + i, color);
+		put_pixel(vars, pos.px_x, pos.px_y + i, color);
 	i = -1;
 	while (++i < size)
-		put_pixel(vars, x + size, y + i, color);
+		put_pixel(vars, pos.px_x + size, pos.px_y + i, color);
 	i = -1;
 	while (++i < size)
-		put_pixel(vars, x + i, y + size, color);
+		put_pixel(vars, pos.px_x + i, pos.px_y + size, color);
 }
 
-void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
+void	draw_column(t_vars *vars, int ray_id, t_intrsec *w_slc, bool draw_map)
 {
 	int		y;
 	int		color;
@@ -55,15 +55,15 @@ void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
 	y = HEIGHT - 1;
 	while (y >= 0)
 	{
-		if (draw_map\
-			&& (t_size)ray_id >= WIDTH - 1 - (vars->map.g_w * vars->map.pixel_per_grid)\
-			&& (t_size)y >= HEIGHT - 1 - (vars->map.g_h * vars->map.pixel_per_grid))
+		if (draw_map \
+			&& (t_size)ray_id >= WIDTH - 1 - (vars->map.g_w * vars->map.ppg) \
+			&& (t_size)y >= HEIGHT - 1 - (vars->map.g_h * vars->map.ppg))
 			y--;
-		else if (y > wall_slice->wall_bottom)
+		else if (y >= w_slc->wall_bottom)
 			put_pixel(vars, ray_id, y--, create_argb(vars->map.floor));
-		else if (y > wall_slice->wall_top)
+		else if (y > w_slc->wall_top)
 		{
-			color = get_color_from_txt(vars, wall_slice, y);
+			color = get_color_from_txt(vars, w_slc, y);
 			put_pixel(vars, ray_id, y--, color);
 		}
 		else
@@ -73,12 +73,11 @@ void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map)
 
 void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
 {
-	float	x;
-	float	y;
-	float	dx;
-	float	dy;
-	float	step;
-	int		i;
+	t_fpoint	p;
+	float		dx;
+	float		dy;
+	float		step;
+	int			i;
 
 	dx = (float)p2.px_x - p1.px_x;
 	dy = (float)p2.px_y - p1.px_y;
@@ -88,14 +87,14 @@ void	draw_line(t_vars *vars, t_point p1, t_point p2, int color)
 		step = absolute(dy);
 	dx = dx / step;
 	dy = dy / step;
-	x = p1.px_x;
-	y = p1.px_y;
+	p.x = p1.px_x;
+	p.y = p1.px_y;
 	i = 0;
 	while (i < (int)step)
 	{
-		put_pixel(vars, (int)x, (int)y, color);
-		x += dx;
-		y += dy;
+		put_pixel(vars, (int)p.x, (int)p.y, color);
+		p.x += dx;
+		p.y += dy;
 		i++;
 	}
 }

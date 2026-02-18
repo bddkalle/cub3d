@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:55:06 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/22 10:46:54 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/18 10:32:15 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	cub_interpreter(t_vars *vars, char *file)
 	if (!line)
 	{
 		close(fd);
-		fatal_error(vars, "No map included", "cub_interpreter");
+		fatal_error(vars, "No map as last element included", "cub_interpreter");
 	}
 	parse_map(vars, line, fd, file);
 	close(fd);

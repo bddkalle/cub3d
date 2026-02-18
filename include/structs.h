@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/17 14:41:51 by vboxuser         ###   ########.fr       */
+/*   Updated: 2026/02/18 09:42:48 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map
 	int		floor[4];
 	int		ceiling[4];
 	int		start_found;
-	int		pixel_per_grid;
+	int		ppg;
 }	t_map;
 
 typedef struct s_point

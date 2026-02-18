@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+         #
+#    By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 11:47:25 by fschnorr          #+#    #+#              #
-#    Updated: 2026/02/17 14:51:28 by vboxuser         ###   ########.fr        #
+#    Updated: 2026/02/18 10:27:40 by cdahne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = cub3D
 INCLUDE = -I include $(LIBFT_INCLUDES) $(MLX_INCLUDE) $(LAPI_INCLUDE)
 SRC =	$(addsuffix .c,							\
 		$(addprefix src/, 						\
-							debug				\
 							draw				\
 							draw_map			\
 							draw_utils			\
@@ -59,7 +58,7 @@ LIBFT_AR = $(LIBFT_DIR)/libft.a
 
 MLX_INCLUDE = -I $(MLX_DIR)
 MLX_DIR = lib/minilibx-linux
-MLX_LINK = -L$(MLX_DIR) -lmlx_Linux
+MLX_LINK = -L$(MLX_DIR) -lmlx
 
 LAPI_INCLUDE = -I $(LAPI_DIR)/include
 LAPI_DIR = /usr
@@ -101,9 +100,6 @@ run: all
 
 valgrind: CFLAGS += -g -O0
 valgrind: re
-#	@make -C $(FT_PRINTF_DIR) $(MFLAGS)
-#	@make -C $(GNL_DIR) $(MFLAGS)
-#	$(CC) $^ $(FT_PRINTF_AR) $(GNL_AR) -o $(NAME) $(CFLAGS) $(VFLAGS) $(INCLUDE) $(MLX_LINK) $(LAPI_LINK)
 	@valgrind --suppressions=valgrind.supp --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes -s ./$(NAME) $(ARG)
 
 checkup:

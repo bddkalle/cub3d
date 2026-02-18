@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:24:03 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 20:18:56 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/02/18 10:13:06 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ void	extract_map(t_vars *vars, char *line, int fd, char *file)
 void	parse_map(t_vars *vars, char *line, int fd, char *file)
 {
 	extract_map(vars, line, fd, file);
-	// print_grid(vars);
 	validate_map(vars);
 }
