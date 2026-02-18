@@ -1,13 +1,13 @@
 R 1600 800
-NO textures/wall_3.xpm
-SO textures/wall_3.xpm
-WE textures/wood.png
-EA textures/wood.png
+NO ./assets/textures/wall_3.xpm
+SO ./assets/textures/wall_3.xpm
+WE ./assets/textures/wood.xpm
+EA ./assets/textures/wood.xpm
 
 S  textures/sprite_3.xpm
 
-F textures/stone_2.png
-C textures/blue_left.png
+F ./assets/textures/stone_2.xpm
+C ./assets/textures/blue_left.xpm
 
         1111111111111111111111111
         1100000000110000000111211
