@@ -6,7 +6,7 @@
 /*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:54:42 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 09:42:48 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/02/18 15:28:54 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ typedef struct s_intrsec
 	int			offset;
 	double		distance;
 	double		wall_height;
-	int			wall_bottom;
-	int			wall_top;
+	long	wall_bottom;
+	long	wall_top;
 }	t_intrsec;
 
 typedef struct s_player

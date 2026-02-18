@@ -6,7 +6,7 @@
 /*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 12:39:13 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/02/18 16:03:46 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y)
 	if (wall_slice->txt == NULL)
 		return (0);
 	txt_y = y_texture_mapping(wall_slice, y);
+	if (txt_y < 0 || txt_y >= wall_slice->txt->px_h)
+		return (0);
 	addr = wall_slice->txt->addr;
 	index = txt_y * wall_slice->txt->size_line \
 		+ wall_slice->offset * (wall_slice->txt->bits_per_pixel / 8);

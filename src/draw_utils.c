@@ -6,7 +6,7 @@
 /*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:08:14 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 12:29:23 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/02/18 16:04:02 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw_square(t_vars *vars, t_point pos, int size, int color)
 
 void	draw_column(t_vars *vars, int ray_id, t_intrsec *w_slc, bool draw_map)
 {
-	int		y;
+	long	y;
 	int		color;
 
 	y = HEIGHT - 1;
