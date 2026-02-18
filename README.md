@@ -1,118 +1,83 @@
+*This project has been created as part of the 42 curriculum by cdahne, fschnorr.*
+
 # cub3D
 
-**Raycasting-Engine (2.5D) in C — Projekt in Entwicklung**
+## Description
+`cub3D` is a small 3D-like rendering engine written in C with MiniLibX.
 
-Dieses Projekt implementiert eine einfache 2.5D-Raycasting-Engine (inspiriert von klassischen Wolfenstein-/DOOM-Techniken) in C. Ziel ist es, die mathematischen und low-level-technischen Grundlagen der Echtzeit-Rendering-Pipelines zu verstehen und praktisch umzusetzen: Strahlen (Rays) werfen, Distanzen berechnen, Wand-Projektion und Textur-Mapping.
+Project goal:
+- Learn core graphics and game-loop concepts through a raycasting renderer.
+- Parse and validate `.cub` map files.
+- Render textured walls and allow real-time player movement in a grid-based world.
 
-> Hinweis: Dieses Repo befindet sich aktiv in Entwicklung. Issue-/PR-Contributions sind willkommen.
+In short, the program reads a map description, initializes textures/colors/player state, then renders a first-person view at runtime.
 
----
+## Features
+- Raycasting-based wall rendering.
+- Texture loading for `NO`, `SO`, `WE`, `EA` wall directions.
+- Floor and ceiling RGB color parsing (`F` and `C`).
+- Map validation (required identifiers, one spawn, closed map checks).
+- Player movement with collision handling.
 
-## Inhaltsverzeichnis
-- [Kurzüberblick](#kurzüberblick)  
-- [Status / Roadmap](#status--roadmap)  
-- [Voraussetzungen](#voraussetzungen)  
-- [Quickstart / Build](#quickstart--build)  
-- [Beispielnutzung / Controls](#beispielnutzung--controls)  
-- [Architektur & Ordnerstruktur](#architektur--ordnerstruktur)  
-- [Tests & Debugging](#tests--debugging)  
+## Instructions
+### Prerequisites
+- Linux (X11 environment).
+- `cc`, `make`.
+- X11 and MiniLibX dependencies (see setup targets below).
 
-
----
-
-## Kurzüberblick
-`cub3D` ist eine minimalistische 2.5D-Engine, umgesetzt in C. Sie liest eine tile-basierte Karte ein und rendert eine begehbare 3D-ähnliche Szene mittels Raycasting. Das Projekt dient als Lernprojekt für Grafikgrundlagen, Geometrie/Trigonometrie, Performance-Optimierung sowie low-level C-Programmierung.
-
----
-
-## Status / Roadmap
-**Aktueller Stand (in Arbeit):**
-- [x] Grundlegende Raycasting-Loop & Wandprojektion  
-- [x] Playerbewegung & Kollisionserkennung (Basis)  
-- [ ] Textur-Mapping (In Arbeit / teilweise implementiert)  
-- [ ] Sprites / Objekte (geplant)  
-- [ ] Performance-Optimierungen & Frame-Limit  
-- [ ] Robustere Map-Parser / Fehlerbehandlung  
-- [ ] Unit/Integration Tests & CI
-
----
-
-## Voraussetzungen
-- C-Compiler (gcc/clang) mit C99/C11-Support  
-- make  
-- **Grafikbibliothek**: eine einfache 2D-Grafikbibliothek ist nötig (z. B. *MiniLibX* (MLX) oder eine X11-kompatible Bibliothek). Stelle sicher, dass auf deinem System die benötigten Dev-Pakete installiert sind (z. B. X11-Headers auf Linux).  
-- Optional: `valgrind` für Speicherchecks, `gdb` für Debugging.
-
----
-
-## Quickstart / Build
-
-**1) Repository klonen**
-```bash
-git clone https://github.com/bddkalle/cub3d.git
-cd cub3d
-```
-
-**2) Build***
-Falls deine Grafikbibliothek separat gebaut werden muss:
-```bash
-make setup
-```
-Zum Kompilieren des Projekts:
+### Build
+1. Download minilibx-linux.tgz and extract into `./lib` using `tar -xvf minilibx-linux.tgz`.
+2. Compile the project:
 ```bash
 make
 ```
-Erwartetes Ergebnis: ein Binary (z. B. ./cub3D) im Projektordner.
 
-**3) Ausführen**
+This produces the executable `./cub3D`.
+
+### Run
 ```bash
-./cub3d maps/example.cub
+./cub3D assets/maps/basic.cub
 ```
 
----
+You can use any valid `.cub` file, for example:
+- `assets/maps/example.cub`
+- `assets/maps/map.cub`
+- `assets/maps/quad.cub`
 
-## Beispielnutzung / Controls
-Standard-Kontrollen (kann je nach Implementation variieren):
-- W / S — vorwärts / rückwärts
-- A / D — seitwärts strafing (optional)
-- Pfeiltasten ← → — Rotation / Blickrichtung ändern
-- ESC — Programm beenden
+### Controls
+- `W` / `S`: move forward / backward
+- `A` / `D`: strafe left / right
+- `Left Arrow` / `Right Arrow`: rotate camera
+- `ESC` or window close: quit
 
-Beispiel:
-```bash
-./cub3d maps/level01.cub
-# dann im Fenster: W A S D oder Pfeil rechts/links zum bewegen
-```
+### Useful targets
+- `make debug`: build and open in `gdb`.
+- `make valgrind ARG="assets/maps/basic.cub"`: run with leak checks.
+- `make re`: full rebuild.
 
----
+## Map Format (Quick Reference)
+A valid `.cub` file must include:
+- Texture identifiers: `NO`, `SO`, `WE`, `EA`
+- Color identifiers: `F` and `C`
+- A map using only valid tiles (`0`, `1`, `N`, `S`, `E`, `W`, and spaces)
+- Exactly one player start position
+- A map enclosed by walls
 
-## Architektur & Ordnerstruktur
-```bash
-cub3d/
- ├── src/              # Quellcode (raycasting, player, rendering, parser, utils)
- ├── includes/         # Headerdateien
- ├── maps/             # Beispiel-Maps (.cub Dateien)
- ├── textures/         # Texturdateien (BMP/PNG) falls verwendet
- ├── lib/               # optionale Bibliotheken / submodules (z. B. libmlx)
- ├── Makefile
- └── README.md
-```
-Wichtige Module:
-- `raycasting.c` / `ray.c`: Kernalgorithmus — Strahlen aussenden, Wandkollision, Distanzberechnung
-- `render.c`: Wandprojektion und Pixel-/Line-Drawing (ggf. texture mapping)
-- `player.c`: Player-Position, Bewegung, Kollisionsabfrage
-- `parser.c`: Mapparser (Lese .cub Dateien, Validierung)
-- `utils/`: Mathematische Hilfsfunktionen, Fehlerhandling, Farb-Utilities
+## Project Structure
+- `src/`: core implementation (init, parsing, validation, player, raycasting, drawing)
+- `include/`: headers and project structs
+- `assets/`: example maps and textures
+- `lib/libft/`: custom C utility library
+- `lib/minilibx-linux/`: MiniLibX
+- `_docs/en.subject.pdf`: 42 subject document
 
----
+## Resources
+Classic references:
+- 42 subject file: `en.subject.pdf`
+- MiniLibX reference: https://harm-smits.github.io/42docs/libs/minilibx
+- Permadi Ray Casting Tutorial: https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/
 
-## Tests & Debugging
-- **Valgrind:**
-```bash
-  valgrind --leak-check=full --show-leak-kinds=all ./cub3d maps/example.cub
-```
-
-- **GDB:**
-```bash
-  gdb --args ./cub3d maps/example.cub
-```
+AI usage disclosure:
+- Project development followed the official 42 AI Instructions as provided by the 42 subject file.
+- AI was used to draft and structure this `README.md`.
+- AI support in this update was limited to documentation tasks (wording, sectioning, and command clarity).

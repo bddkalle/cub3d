@@ -6,7 +6,7 @@
 /*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:29:32 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 09:53:44 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/02/18 12:39:13 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y)
 		+ wall_slice->offset * (wall_slice->txt->bits_per_pixel / 8);
 	color = (addr[index] & 0xFF) \
 		| ((addr[index + 1] & 0xFF) << 8) \
-		| ((addr[index + 2] & 0xFF) << 16) \
-		| ((addr[index + 3] & 0xFF) << 24);
+		| ((addr[index + 2] & 0xFF) << 16);
 	return (color);
 }

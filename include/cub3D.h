@@ -6,26 +6,26 @@
 /*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 16:00:52 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 09:58:40 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/02/18 12:30:24 by cdahne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#  define WIDTH 1280
-#  define HEIGHT 720
-#  define BLOCK 64
+# define WIDTH 1280
+# define HEIGHT 720
+# define BLOCK 64
 
-#  define W 119
-#  define A 97
-#  define S 115
-#  define D 100
-#  define LEFT 65361
-#  define RIGHT 65363
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define LEFT 65361
+# define RIGHT 65363
 
-#  define PI 3.14159265359
-#  define INT_MAX 2147483647
+# define PI 3.14159265359
+# define INT_MAX 2147483647
 
 # include <stdbool.h>
 # include <stdio.h>
@@ -72,10 +72,10 @@ void	put_pixel(t_vars *vars, int x, int y, int color);
 void	draw_line(t_vars *vars, t_point p1, t_point p2, int color);
 int		draw_img(t_vars *vars);
 void	draw_square(t_vars *vars, t_point pos, int size, int color);
-void	draw_column(t_vars *vars, int ray_id, t_intrsec *wall_slice, bool draw_map);
+void	draw_column(t_vars *vars, int ray_id, t_intrsec *w_slc, bool draw_map);
 void	draw_map(t_vars *vars);
 void	draw_ray(t_vars *vars, t_fpoint touchpoint);
-int		create_argb(int	rgb[3]);
+int		create_argb(int rgb[3]);
 
 //Raycaster
 void	cast_ray(t_vars *vars, double beta, int ray_id, bool draw_map);
@@ -84,8 +84,6 @@ void	first_hor_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
 void	next_hor_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
 void	first_ver_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
 void	next_ver_intersec(t_vars *vars, t_intrsec *wall_slice, double beta);
-void	touch_horizontal(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id);
-void	touch_vertical(t_vars *vars, t_intrsec *wall_slice, double beta, int ray_id);
 int		get_color_from_txt(t_vars *vars, t_intrsec *wall_slice, int y);
 void	wall_orientation(t_vars *vars, t_intrsec *wall_slice);
 
