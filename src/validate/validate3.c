@@ -6,7 +6,7 @@
 /*   By: fschnorr <fschnorr@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:15:55 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/01/20 12:03:29 by fschnorr         ###   ########.fr       */
+/*   Updated: 2026/03/05 15:32:58 by fschnorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_open_wall(t_vars *vars, int y, int x)
 {
-	if (y < 0 || x < 0 || y > (int)vars->map.g_h || x > (int)vars->map.g_w)
+	if (y < 0 || x < 0 || y > (int)vars->map.g_h - 1 \
+	|| x > (int)vars->map.g_w - 1)
 		return (1);
 	else if (vars->map.tile[y][x].visited)
 		return (0);
