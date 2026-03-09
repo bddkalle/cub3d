@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahne <cdahne@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:01:35 by fschnorr          #+#    #+#             */
-/*   Updated: 2026/02/18 14:40:12 by cdahne           ###   ########.fr       */
+/*   Updated: 2026/03/09 16:06:08 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@ bool	wall_collision(t_vars *vars, double x_inc, double y_inc)
 {
 	double	x;
 	double	y;
-	t_wall	collision;
+	t_wall	coll_str;
+	t_wall	coll_strleft;
+	t_wall	coll_strright;
 
 	x = vars->player.x + x_inc;
 	y = vars->player.y + y_inc;
-	collision = touch(vars, x, y);
-	if (collision == TOUCH)
+	coll_str = touch(vars, x, y);
+	coll_strleft = touch(vars, x + y_inc, y - x_inc);
+	coll_strright = touch(vars, x - y_inc, y + x_inc);
+	if (coll_str == TOUCH || \
+		coll_strleft == TOUCH || \
+		coll_strright == TOUCH)
 		return (true);
 	return (false);
 }
